@@ -8,76 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="taskbar">
-        <div class="brand-section" onclick="goHome()">
-            <div class="logo-circle">🎓</div>
-            <div class="title-group">
-                <h1 style="margin:0; font-size:1.2rem;">MinhKhoi's Commencement</h1>
-                <p style="margin:0; font-size:0.85rem; color:var(--text-sub);">Hành trình 1000 ngày tại Đôn</p>
-            </div>
-        </div>
-        <div class="nav-links">
-            <div class="nav-item active" onclick="showTab('tab-intro', this)">Lời tựa</div> 
-            <div class="nav-item" onclick="showTab('tab-invitation', this)">Thiệp mời</div>
-            <div class="nav-item" onclick="showTab('tab-gallery', this)">Hình ảnh</div>
-            <div class="nav-item" onclick="showTab('tab-guestbook', this)">Lưu bút</div>
-        </div>
-    </nav>
 
-    <div class="content-section active" id="tab-intro">
-        <div class="intro-box">
-            <h2 style="font-family: 'Playfair Display', serif; font-style: italic;">Tri ân những mảnh ghép thanh xuân...</h2>
-            <p>"Thanh xuân của Minh Khôi không chỉ là những trang vở tại Đôn, mà còn là một bức tranh rực rỡ được dệt nên từ sự hiện diện của tất cả mọi người..."</p>
-            <p style="text-align: right; font-weight: 600;">— Trân trọng, Minh Khôi</p>
-        </div>
-    </div>
-
-    <div class="content-section" id="tab-invitation">
-        <div class="invitation-card">
-            <h1 class="script-name">Minh Khoi's</h1>
-            <div class="main-event-title">GRADUATION PHOTOSHOOT</div>
-            <div class="details-container">
-                <div class="detail-col"><span class="gold-label">FEB 1</span></div>
-                <div class="detail-col center">Le Quy Don High School</div>
-                <div class="detail-col"><span class="gold-label">9:30 AM</span></div>
-            </div>
-            <div class="rsvp-text">RSVP +84 833 204 240</div>
-        </div>
-        <div class="form-card">
-            <form id="rsvp-form" onsubmit="submitRSVP(event)">
-                <input type="text" id="rsvp-name" class="input-field" placeholder="Họ tên..." required>
-                <input type="tel" id="rsvp-phone" class="input-field" placeholder="Số điện thoại..." required>
-                <button type="submit" class="btn-submit">Xác nhận gửi</button>
-            </form>
-            <div id="rsvp-thank-you" class="thank-you-box"><h3>Cảm ơn bạn!</h3></div>
-        </div>
-    </div>
-
-    <div class="content-section" id="tab-gallery">
-        <input type="text" id="gallerySearch" class="input-field" placeholder="🔍 Tìm kiếm thư mục..." onkeyup="filterGallery()">
-        <div id="gallery-container"></div>
-    </div>
-
-    <div class="content-section" id="tab-guestbook">
-        <div class="form-card">
-            <form id="gb-form" onsubmit="submitGuestbook(event)">
-                <input type="text" id="gb-name" class="input-field" placeholder="Tên của bạn..." required>
-                <textarea id="gb-msg" class="input-field" rows="5" placeholder="Lời nhắn..." required></textarea>
-                <button type="submit" class="btn-submit">Gửi lời nhắn</button>
-            </form>
-            <div id="guestbook-thank-you" class="thank-you-box"><h3>Cảm ơn bạn!</h3></div>
-        </div>
-    </div>
-
-    <div class="admin-fab-wrapper">
-        <button class="fab-main-btn" onclick="toggleFabMenu()">⚙️<div id="notif-badge-main" class="notif-badge-main">0</div></button>
-        <div class="fab-menu" id="adminMenu">
-            <button class="fab-item" onclick="exportToCSV('guestbook')">📝 Tải Lưu bút <span id="badge-gb" class="sub-badge">0</span></button>
-            <button class="fab-item" onclick="exportToCSV('rsvp')">✅ Tải RSVP <span id="badge-rsvp" class="sub-badge">0</span></button>
-        </div>
-    </div>
-
-    <script src="js/gallery.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
