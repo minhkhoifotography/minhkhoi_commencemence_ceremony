@@ -8,9 +8,8 @@
     <style>
         /* GIỮ NGUYÊN TOÀN BỘ CSS CỦA BẠN */
         :root {
-            --palette-beige: #DCC6B3; --palette-black: #0C0C0C; --palette-white: #FFFFFF;        
-            --palette-navy:  #0F1A30; --palette-pink:  #F5D5D6; --palette-grey:  #E5E5E7; --palette-peri:  #9CA7C7;        
-            --gold-text: #B88E2F; --bg-main: #FAF8F5; --card-bg: #FFFFFF; --text-main: #1E2C48; --text-sub:  #64748b;
+            --palette-beige: #DCC6B3; --palette-black: #0C0C0C; --palette-white: #FFFFFF; --palette-navy: #0F1A30; --palette-pink: #F5D5D6; --palette-grey: #E5E5E7; --palette-peri: #9CA7C7;
+            --gold-text: #B88E2F; --bg-main: #FAF8F5; --card-bg: #FFFFFF; --text-main: #1E2C48; --text-sub: #64748b;
         }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-main); margin: 0; padding: 20px; line-height: 1.6; }
         .taskbar { display: flex; align-items: center; justify-content: space-between; background-color: var(--card-bg); padding: 12px 24px; border-radius: 16px; max-width: 1200px; margin: 0 auto 40px auto; box-shadow: 0 4px 20px rgba(30, 44, 72, 0.08); flex-wrap: wrap; gap: 15px; border: 1px solid rgba(0,0,0,0.03); }
@@ -27,23 +26,23 @@
         .curved-text { font-family: 'Courier Prime', monospace; font-size: 14px; letter-spacing: 2px; fill: #333; text-transform: uppercase; font-weight: 600; }
         .grad-cap-icon { width: 120px; margin: 0 auto; display: block; }
         .script-name { font-family: 'Great Vibes', cursive; font-size: 4rem; color: var(--gold-text); margin: 0; line-height: 1.2; font-weight: 400; }
+        .main-event-title, .sub-event-title { font-family: 'Courier Prime', monospace; text-transform: uppercase; letter-spacing: 4px; font-size: 1.4rem; color: #333; font-weight: 600; }
         .details-container { border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 15px 0; margin: 25px 0; display: flex; align-items: center; justify-content: center; }
         .detail-col { padding: 0 15px; text-align: center; }
         .detail-col.center { border-left: 1px solid #555; border-right: 1px solid #555; flex: 1; }
-        .gold-label { color: var(--gold-text); font-weight: bold; font-size: 1.4rem; font-family: 'Courier Prime', monospace; display: block; line-height: 1; }
+        .gold-label { color: var(--gold-text); font-weight: bold; font-size: 1.4rem; font-family: 'Courier Prime', monospace; display: block; }
         .gold-number { color: var(--gold-text); font-weight: bold; font-size: 1.8rem; font-family: 'Courier Prime', monospace; display: block; margin-top: 5px; }
         .form-card { background: var(--card-bg); max-width: 500px; margin: 0 auto; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: var(--palette-navy); }
-        .input-field { width: 100%; padding: 12px; border: 1.5px solid #eee; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95rem; }
-        .checkbox-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; margin-top: 10px; }
+        .input-field { width: 100%; padding: 12px; border: 1.5px solid #eee; border-radius: 10px; box-sizing: border-box; font-family: inherit; }
+        .checkbox-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; }
         .btn-submit { width: 100%; background: var(--palette-navy); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer; }
-        .admin-panel { max-width: 1000px; margin: 80px auto 20px auto; border-top: 2px dashed #ccc; padding-top: 20px; text-align: center; }
-        .btn-export { background-color: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin: 5px; }
+        .thank-you-box { text-align: center; padding: 20px 10px; display: none; }
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
         .photo-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
         .photo-card img { width: 100%; height: 200px; object-fit: cover; }
-        .thank-you-box { text-align: center; padding: 20px 10px; display: none; }
+        .photo-info { padding: 15px; text-align: center; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -67,7 +66,9 @@
     <div class="content-section active" id="tab-intro">
         <div style="background: var(--card-bg); border-left: 4px solid var(--palette-navy); padding: 35px 40px; border-radius: 0 20px 20px 0; box-shadow: 0 4px 15px rgba(30,44,72,0.05);">
             <h2 style="color:var(--palette-navy); margin-top:0; font-family: 'Playfair Display', serif; font-style: italic;">Tri ân những mảnh ghép thanh xuân...</h2>
-            <p>"Thanh xuân của Minh Khôi không chỉ là những trang vở tại Đôn..."</p>
+            <p style="font-size: 1.1rem; color: #334155; text-align: justify;">
+                "Thanh xuân của Minh Khôi không chỉ là những trang vở tại Đôn, mà còn là một bức tranh rực rỡ được dệt nên từ sự hiện diện của tất cả mọi người..."
+            </p>
             <p style="text-align: right; font-style: italic; color: var(--palette-navy); font-weight: 600;">— Trân trọng, Minh Khôi</p>
         </div>
     </div>
@@ -84,19 +85,23 @@
                 <div class="detail-col center">Le Quy Don High School</div>
                 <div class="detail-col"><span class="gold-label">9:30</span><span class="gold-number">AM</span></div>
             </div>
+            <div class="rsvp-text" style="font-family: 'Courier Prime', monospace; font-weight: bold; margin-top: 15px;">RSVP +84 833 204 240</div>
         </div>
 
         <div class="form-card">
             <div id="rsvp-form-container">
-                <form id="rsvp-form" onsubmit="submitRSVP(event)">
+                <h3 style="text-align: center; margin-bottom: 25px;">Xác nhận tham gia</h3>
+                <form id="rsvp-form" onsubmit="window.handleRSVP(event)">
                     <div class="form-group"><label>Họ và tên</label><input type="text" id="rsvp-name" class="input-field" required></div>
-                    <div class="form-group"><label>SĐT</label><input type="tel" id="rsvp-phone" class="input-field" required></div>
+                    <div class="form-group"><label>Số điện thoại</label><input type="tel" id="rsvp-phone" class="input-field" required></div>
                     <div class="form-group"><label>Thời gian</label>
                         <div class="checkbox-group">
-                            <label class="checkbox-item"><input type="checkbox" name="time" value="8:30AM"> 8:30AM</label>
-                            <label class="checkbox-item"><input type="checkbox" name="time" value="9:30AM"> 9:30AM</label>
+                            <label><input type="checkbox" name="time" value="8:30AM"> 8:30AM</label>
+                            <label><input type="checkbox" name="time" value="9:30AM"> 9:30AM</label>
+                            <label><input type="checkbox" name="time" value="10:00AM"> 10:00AM</label>
                         </div>
                     </div>
+                    <div class="form-group"><label>Lưu ý</label><textarea id="rsvp-note" class="input-field" rows="2"></textarea></div>
                     <button type="submit" class="btn-submit">Xác nhận gửi</button>
                 </form>
             </div>
@@ -113,27 +118,20 @@
     <div class="content-section" id="tab-guestbook">
         <div class="form-card">
             <div id="guestbook-form-container">
-                <form id="gb-form" onsubmit="submitGuestbook(event)">
+                <form id="gb-form" onsubmit="window.handleGB(event)">
                     <div class="form-group"><label>Tên</label><input type="text" id="gb-name" class="input-field" required></div>
                     <div class="form-group"><label>Lời nhắn</label><textarea id="gb-msg" class="input-field" rows="5" required></textarea></div>
                     <button type="submit" class="btn-submit">Gửi lời nhắn</button>
                 </form>
             </div>
-            <div id="guestbook-thank-you" class="thank-you-box"><h3>✨ Cảm ơn bạn!</h3></div>
+            <div id="guestbook-thank-you" class="thank-you-box"><h3>✨ Cảm ơn bạn rất nhiều!</h3></div>
         </div>
-    </div>
-
-    <div class="admin-panel">
-        <p>Dành cho Ban tổ chức: Trích xuất dữ liệu khách mời</p>
-        <button class="btn-export" onclick="exportToCSV('rsvp')">Tải CSV Xác nhận (RSVP)</button>
-        <button class="btn-export" onclick="exportToCSV('guestbook')">Tải CSV Lưu bút</button>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-        // Cấu hình Firebase của bạn
         const firebaseConfig = {
             apiKey: "AIzaSyBQFqscPavMiqQZzp3vIxzCwbpIGj-LMGM",
             authDomain: "minhkhoicommencement.firebaseapp.com",
@@ -147,49 +145,44 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // Đưa các hàm ra phạm vi toàn cục (window) để HTML cũ gọi được
-        window.rsvpData = [];
-        window.guestbookData = [];
+        let rsvpData = [];
 
-        // Đồng bộ dữ liệu từ Firebase về mảng để hàm Export hoạt động
+        // Lấy dữ liệu về cho rsvpData
         onValue(ref(db, 'rsvps'), (snapshot) => {
             const data = snapshot.val();
-            window.rsvpData = data ? Object.values(data) : [];
-        });
-        onValue(ref(db, 'guestbook'), (snapshot) => {
-            const data = snapshot.val();
-            window.guestbookData = data ? Object.values(data) : [];
+            rsvpData = data ? Object.values(data) : [];
         });
 
+        // FIX 1: Đưa hàm showTab ra window
         window.showTab = function(tabId, element) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
 
-            // Tự động tải CSV khi vào tab gallery (theo yêu cầu trước đó của bạn)
-            if (tabId === 'tab-gallery' && window.rsvpData.length > 0) {
-                window.exportToCSV('rsvp');
+            if (tabId === 'tab-gallery' && rsvpData.length > 0) {
+                window.exportToCSV();
             }
         };
 
-        window.submitRSVP = function(e) {
+        // FIX 2: Đưa hàm submit ra window
+        window.handleRSVP = function(e) {
             e.preventDefault();
-            const times = Array.from(document.querySelectorAll('input[name="time"]:checked')).map(cb => cb.value).join("; ");
+            const times = Array.from(document.querySelectorAll('input[name="time"]:checked')).map(cb => cb.value).join(", ");
             const entry = {
                 Name: document.getElementById('rsvp-name').value,
                 Phone: document.getElementById('rsvp-phone').value,
                 Times: times,
+                Note: document.getElementById('rsvp-note').value,
                 Timestamp: new Date().toLocaleString()
             };
-            // Gửi lên Firebase thay vì chỉ push vào mảng
             push(ref(db, 'rsvps'), entry).then(() => {
                 document.getElementById('rsvp-form-container').style.display = 'none';
                 document.getElementById('rsvp-thank-you').style.display = 'block';
             });
         };
 
-        window.submitGuestbook = function(e) {
+        window.handleGB = function(e) {
             e.preventDefault();
             const entry = {
                 Name: document.getElementById('gb-name').value,
@@ -202,19 +195,15 @@
             });
         };
 
-        window.exportToCSV = function(type) {
-            let data = (type === 'rsvp') ? window.rsvpData : window.guestbookData;
-            let filename = (type === 'rsvp') ? "RSVP.csv" : "Guestbook.csv";
-            if (data.length === 0) return alert("Chưa có dữ liệu!");
-
-            let csvContent = "\uFEFF" + Object.keys(data[0]).join(",") + "\n";
-            data.forEach(item => {
-                csvContent += Object.values(item).map(v => `"${v}"`).join(",") + "\n";
+        window.exportToCSV = function() {
+            let csvContent = "\uFEFFHo va Ten,So Dien Thoai,Khung Gio,Luu Y,Ngay Gui\n";
+            rsvpData.forEach(item => {
+                csvContent += `"${item.Name}","${item.Phone}","${item.Times}","${item.Note}","${item.Timestamp}"\n`;
             });
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = filename;
+            link.download = "Danh_sach_RSVP.csv";
             link.click();
         };
     </script>
