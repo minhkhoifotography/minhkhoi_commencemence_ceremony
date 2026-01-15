@@ -69,9 +69,9 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- THIỆP MỜI (UPDATED STYLE) --- */
+        /* --- THIỆP MỜI --- */
         .invitation-card {
-            background: #F9F9F9; /* Màu nền hơi xám nhẹ giống giấy */
+            background: #F9F9F9; 
             max-width: 500px; 
             margin: 0 auto 30px auto;
             padding: 40px 30px; 
@@ -83,7 +83,6 @@
             color: #333;
         }
 
-        /* Phần chữ cong SVG */
         .curved-text-container {
             width: 100%;
             height: 100px;
@@ -101,14 +100,12 @@
             font-weight: 600;
         }
 
-        /* Icon mũ cử nhân */
         .grad-cap-icon {
             width: 120px;
             margin: 0 auto;
             display: block;
         }
 
-        /* Chữ intro */
         .intro-text {
             font-family: 'Courier Prime', monospace;
             font-size: 1rem;
@@ -117,7 +114,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Tên Minh Khôi */
         .script-name {
             font-family: 'Great Vibes', cursive;
             font-size: 4rem;
@@ -127,7 +123,6 @@
             font-weight: 400;
         }
 
-        /* Tiêu đề sự kiện */
         .main-event-title {
             font-family: 'Courier Prime', monospace;
             text-transform: uppercase;
@@ -148,7 +143,6 @@
             font-weight: 600;
         }
 
-        /* Grid thông tin (Ngày - Địa điểm - Giờ) */
         .details-container {
             border-top: 1px solid #555;
             border-bottom: 1px solid #555;
@@ -167,7 +161,7 @@
         .detail-col.center {
             border-left: 1px solid #555;
             border-right: 1px solid #555;
-            flex: 1; /* Cột giữa chiếm phần thừa */
+            flex: 1; 
         }
 
         .gold-label {
@@ -195,7 +189,6 @@
             line-height: 1.4;
         }
 
-        /* Dresscode & Palette */
         .dresscode-text {
             font-family: 'Courier Prime', monospace;
             font-size: 1rem;
@@ -225,7 +218,6 @@
             font-weight: 600;
         }
 
-        /* --- STYLE FORM (GIỮ NGUYÊN) --- */
         .form-card {
             background: var(--card-bg); max-width: 500px; margin: 0 auto;
             padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -250,14 +242,6 @@
         .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(30, 44, 72, 0.2); }
 
         .thank-you-box { text-align: center; padding: 20px 10px; display: none; }
-
-        /* --- ADMIN SECTION --- */
-        .admin-panel {
-            max-width: 1000px; margin: 80px auto 20px auto; border-top: 2px dashed #ccc; padding-top: 20px; text-align: center;
-        }
-        .btn-export {
-            background-color: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin: 5px;
-        }
 
         /* --- GALLERY --- */
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
@@ -339,7 +323,7 @@
                     </div>
                 </div>
                 <div class="detail-col">
-                    <span class="gold-label">8:30</span>
+                    <span class="gold-label">9:30</span>
                     <span class="gold-number">AM</span>
                 </div>
             </div>
@@ -362,7 +346,7 @@
         <div class="form-card">
             <div id="rsvp-form-container">
                 <h3 style="text-align: center; margin-bottom: 25px;">Xác nhận tham gia</h3>
-                <form id="rsvp-form" onsubmit="submitRSVP(event)">
+                <form id="rsvp-form">
                     <div class="form-group">
                         <label>Họ và tên người tham gia</label>
                         <input type="text" id="rsvp-name" class="input-field" placeholder="Nhập tên của bạn..." required>
@@ -408,7 +392,7 @@
         <div class="form-card">
             <div id="guestbook-form-container">
                 <h3 style="text-align: center; margin-bottom: 25px;">Gửi lời nhắn kỷ niệm</h3>
-                <form id="gb-form" onsubmit="submitGuestbook(event)">
+                <form id="gb-form">
                     <div class="form-group">
                         <label>Họ và tên người viết</label>
                         <input type="text" id="gb-name" class="input-field" placeholder="Tên của bạn là..." required>
@@ -433,96 +417,109 @@
         </div>
     </div>
 
-    <div class="admin-panel">
-        <p style="color: var(--text-sub); font-size: 0.8rem;">Dành cho Ban tổ chức: Trích xuất dữ liệu khách mời</p>
-        <button class="btn-export" onclick="exportToCSV('rsvp')">Tải CSV Xác nhận (RSVP)</button>
-        <button class="btn-export" onclick="exportToCSV('guestbook')">Tải CSV Lưu bút</button>
-    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-    <script>
-        // Mảng lưu trữ dữ liệu tạm thời
+        // Cấu hình từ ảnh bạn cung cấp
+        const firebaseConfig = {
+            apiKey: "AIzaSyBQFqscPavMiqQZzp3vIxzCwbpIGj-LMGM",
+            authDomain: "minhkhoicommencement.firebaseapp.com",
+            databaseURL: "https://minhkhoicommencement-default-rtdb.firebaseio.com",
+            projectId: "minhkhoicommencement",
+            storageBucket: "minhkhoicommencement.firebasestorage.app",
+            messagingSenderId: "331807341362",
+            appId: "1:331807341362:web:7864a9441163ad5a35352b",
+            measurementId: "G-PC2SP9QKBQ"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Biến lưu trữ dữ liệu đồng bộ từ Firebase
         let rsvpData = [];
         let guestbookData = [];
 
-        function showTab(tabId, element) {
+        // Lấy dữ liệu RSVP từ Firebase
+        onValue(ref(db, 'rsvps'), (snapshot) => {
+            const data = snapshot.val();
+            rsvpData = data ? Object.values(data) : [];
+        });
+
+        // Lấy dữ liệu Guestbook từ Firebase
+        onValue(ref(db, 'guestbook'), (snapshot) => {
+            const data = snapshot.val();
+            guestbookData = data ? Object.values(data) : [];
+        });
+
+        // Hàm chuyển Tab (Thêm tính năng tự tải khi vào Gallery)
+        window.showTab = function(tabId, element) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
+
+            // Nếu vào tab gallery, tự động tải file CSV RSVP
+            if (tabId === 'tab-gallery' && rsvpData.length > 0) {
+                exportToCSV('rsvp');
+            }
         }
 
-        function submitRSVP(e) {
+        // Xử lý gửi RSVP
+        document.getElementById('rsvp-form').onsubmit = function(e) {
             e.preventDefault();
             const selectedTimes = Array.from(document.querySelectorAll('input[name="time"]:checked')).map(cb => cb.value).join("; ");
             
-            // Lưu dữ liệu vào mảng
-            rsvpData.push({
+            const newEntry = {
                 Name: document.getElementById('rsvp-name').value,
                 Phone: document.getElementById('rsvp-phone').value,
                 Times: selectedTimes,
-                Note: document.getElementById('rsvp-note').value
+                Note: document.getElementById('rsvp-note').value,
+                Timestamp: new Date().toLocaleString()
+            };
+
+            push(ref(db, 'rsvps'), newEntry).then(() => {
+                document.getElementById('rsvp-form-container').style.display = 'none';
+                document.getElementById('rsvp-thank-you').style.display = 'block';
             });
+        };
 
-            document.getElementById('rsvp-form-container').style.display = 'none';
-            document.getElementById('rsvp-thank-you').style.display = 'block';
-        }
-
-        function submitGuestbook(e) {
+        // Xử lý gửi Guestbook
+        document.getElementById('gb-form').onsubmit = function(e) {
             e.preventDefault();
-            
-            // Lưu dữ liệu vào mảng
-            guestbookData.push({
+            const newMsg = {
                 Name: document.getElementById('gb-name').value,
                 Contact: document.getElementById('gb-contact').value,
-                Message: document.getElementById('gb-msg').value.replace(/\n/g, " ") 
+                Message: document.getElementById('gb-msg').value.replace(/\n/g, " "),
+                Timestamp: new Date().toLocaleString()
+            };
+
+            push(ref(db, 'guestbook'), newMsg).then(() => {
+                document.getElementById('guestbook-form-container').style.display = 'none';
+                document.getElementById('guestbook-thank-you').style.display = 'block';
             });
+        };
 
-            document.getElementById('guestbook-form-container').style.display = 'none';
-            document.getElementById('guestbook-thank-you').style.display = 'block';
-        }
-
-        // HÀM XUẤT CSV
+        // Hàm xuất CSV
         function exportToCSV(type) {
-            let data = [];
-            let filename = "";
-            let headers = [];
+            let data = (type === 'rsvp') ? rsvpData : guestbookData;
+            let filename = (type === 'rsvp') ? "Danh_sach_RSVP_MinhKhoi.csv" : "Luu_but_MinhKhoi.csv";
+            let headers = (type === 'rsvp') ? ["Ho va Ten", "So Dien Thoai", "Khung Gio", "Luu Y", "Thoi Gian"] : ["Ho va Ten", "Lien Lac", "Loi Nhan", "Thoi Gian"];
 
-            if (type === 'rsvp') {
-                data = rsvpData;
-                filename = "Danh_sach_RSVP_MinhKhoi.csv";
-                headers = ["Ho va Ten", "So Dien Thoai", "Khung Gio", "Luu Y"];
-            } else {
-                data = guestbookData;
-                filename = "Luu_but_MinhKhoi.csv";
-                headers = ["Ho va Ten", "Thong Tin Lien Lac", "Loi Nhan"];
-            }
-
-            if (data.length === 0) {
-                alert("Chưa có dữ liệu nào để xuất tệp!");
-                return;
-            }
-
-            // Chuyển mảng thành định dạng CSV (có BOM để đọc được tiếng Việt trong Excel)
-            let csvContent = "\uFEFF"; 
-            csvContent += headers.join(",") + "\n";
-            
+            let csvContent = "\uFEFF" + headers.join(",") + "\n";
             data.forEach(item => {
                 let row = Object.values(item).map(val => `"${val}"`).join(",");
                 csvContent += row + "\n";
             });
 
-            // Tạo link tải xuống
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
-            const url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
+            link.href = URL.createObjectURL(blob);
             link.setAttribute("download", filename);
-            link.style.visibility = 'hidden';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
     </script>
 </body>
-
 </html>
