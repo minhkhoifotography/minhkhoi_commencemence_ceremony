@@ -837,51 +837,38 @@ document.head.appendChild(style);
 
 console.log("⚡ Hệ thống đã được tối ưu hóa tốc độ mà không thay đổi code gốc.");
 <script>
-    (function() {
-        // 1. Tự động tải dữ liệu cũ khi vừa load trang
-        window.addEventListener('load', () => {
-            const savedRSVP = localStorage.getItem('minhkhoi_rsvp_storage');
-            const savedGB = localStorage.getItem('minhkhoi_gb_storage');
-            
-            if (savedRSVP) {
-                // Đổ dữ liệu vào biến rsvpData cũ của bạn
-                const parsedRSVP = JSON.parse(savedRSVP);
-                parsedRSVP.forEach(item => rsvpData.push(item));
-                console.log("Đã tải " + rsvpData.length + " dữ liệu RSVP.");
-            }
-            
-            if (savedGB) {
-                // Đổ dữ liệu vào biến guestbookData cũ của bạn
-                const parsedGB = JSON.parse(savedGB);
-                parsedGB.forEach(item => guestbookData.push(item));
-                console.log("Đã tải " + guestbookData.length + " lời nhắn.");
-            }
-        });
+    /* --- HỆ THỐNG LƯU TRỮ ĐÁM MÂY (BỔ SUNG) --- */
+    const SCRIPT_URL = 'DÁN_LINK_WEB_APP_GOOGLE_CỦA_BẠN_VÀO_ĐÂY';
 
-        // 2. Lắng nghe hành động Submit để lưu vào bộ nhớ máy tính
-        // Chúng ta sử dụng 'click' hoặc 'submit' để lưu lại trạng thái mới nhất
-        document.addEventListener('submit', (e) => {
-            if (e.target.id === 'rsvp-form' || e.target.id === 'gb-form') {
-                // Đợi một chút để code gốc của bạn push dữ liệu vào mảng trước
-                setTimeout(() => {
-                    localStorage.setItem('minhkhoi_rsvp_storage', JSON.stringify(rsvpData));
-                    localStorage.setItem('minhkhoi_gb_storage', JSON.stringify(guestbookData));
-                    console.log("Dữ liệu đã được lưu an toàn.");
-                }, 100);
-            }
-        });
+    // Đè (Override) hàm submitRSVP cũ để thêm tính năng gửi web
+    const originalSubmitRSVP = submitRSVP;
+    submitRSVP = function(e) {
+        originalSubmitRSVP(e); // Vẫn chạy logic hiện tại của bạn
+        
+        const lastEntry = rsvpData[rsvpData.length - 1];
+        fetch(SCRIPT_URL + "?type=RSVP", {
+            method: 'POST',
+            body: JSON.stringify(lastEntry)
+        })
+        .then(res => console.log("RSVP đã được lưu vào Google Sheets"))
+        .catch(err => console.error("Lỗi lưu RSVP:", err));
+    };
 
-        // 3. Xử lý xóa dữ liệu khi xuất CSV (Để reset bộ nhớ nếu cần)
-        // Lưu ý: Code này chỉ quan sát, không can thiệp vào logic exportToCSV cũ
-        const originalExport = window.exportToCSV;
-        window.exportToCSV = function(type) {
-            // Vẫn gọi hàm cũ của bạn
-            originalExport(type);
-            // Sau khi tải xong, dữ liệu trong máy vẫn còn, trừ khi bạn muốn xóa sạch
-            // Nếu muốn xóa sau khi tải, bỏ comment dòng dưới:
-            // localStorage.removeItem(type === 'rsvp' ? 'minhkhoi_rsvp_storage' : 'minhkhoi_gb_storage');
-        };
-    })(); 
+    // Đè (Override) hàm submitGuestbook cũ
+    const originalSubmitGuestbook = submitGuestbook;
+    submitGuestbook = function(e) {
+        originalSubmitGuestbook(e); // Vẫn chạy logic hiện tại của bạn
+        
+        const lastEntry = guestbookData[guestbookData.length - 1];
+        fetch(SCRIPT_URL + "?type=Guestbook", {
+            method: 'POST',
+            body: JSON.stringify(lastEntry)
+        })
+        .then(res => console.log("Lưu bút đã được lưu vào Google Sheets"))
+        .catch(err => console.error("Lỗi lưu Guestbook:", err));
+    };
+</script>
 </body>
 </html>
+
 
