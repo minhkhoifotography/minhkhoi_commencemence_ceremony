@@ -771,7 +771,8 @@
         // --- HÀM HIỂN THỊ THEO KIỂU ACTION BUTTON (GIỮ NGUYÊN DỮ LIỆU CŨ) ---
 function renderGallery(filter = "") {
     const container = document.getElementById('gallery-container');
-    container.innerHTML = `<div class="action-grid" id="action-grid"></div>`;
+    // Tạo lưới hiển thị chuyên nghiệp
+    container.innerHTML = `<div class="action-grid" id="action-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 40px 20px; justify-items: center; padding: 30px 0;"></div>`;
     const grid = document.getElementById('action-grid');
 
     const filteredFolders = photoFolders.filter(folder => 
@@ -780,10 +781,12 @@ function renderGallery(filter = "") {
 
     filteredFolders.forEach(folder => {
         const actionButtonHtml = `
-            <a href="${folder.downloadUrl}" target="_blank" class="action-container">
-                <div class="action-icon-box">
-                    <i class="fa-solid fa-crown"></i> </div>
-                <span class="action-name">${folder.name}</span>
+            <a href="${folder.downloadUrl}" target="_blank" class="action-container" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; width: 150px; transition: all 0.3s ease;">
+                <div class="action-icon-box" style="width: 90px; height: 90px; background: #fff; border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.08); border: 2px solid #D4AF37; margin-bottom: 12px; font-size: 40px; color: #D4AF37;">
+                    <i class="fa-solid fa-gem"></i> </div>
+                <span class="action-name" style="font-size: 0.85rem; font-weight: 600; color: #0F1A30; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.8em;">
+                    ${folder.name}
+                </span>
             </a>
         `;
         grid.innerHTML += actionButtonHtml;
@@ -1027,6 +1030,7 @@ console.log("⚡ Hệ thống đã được tối ưu hóa tốc độ mà khôn
     })();    
 </body>
 </html>
+
 
 
 
