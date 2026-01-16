@@ -773,26 +773,32 @@
         // --- HÀM HIỂN THỊ THEO KIỂU ACTION BUTTON (GIỮ NGUYÊN DỮ LIỆU CŨ) ---
 function renderGallery(filter = "") {
     const container = document.getElementById('gallery-container');
-    container.innerHTML = `<div class="action-grid" id="action-grid"></div>`;
+    // Tạo lưới hiển thị với khoảng cách hàng rộng hơn để tránh đè tên
+    container.innerHTML = `<div class="action-grid" id="action-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 45px 20px; justify-items: center; padding: 30px 0;"></div>`;
     const grid = document.getElementById('action-grid');
 
     const filteredFolders = photoFolders.filter(folder => 
         folder.name.toLowerCase().includes(filter.toLowerCase())
     );
 
+    if (filteredFolders.length === 0) {
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #94a3b8; padding: 40px;">Không tìm thấy thư mục nào phù hợp...</p>`;
+        return;
+    }
+
     filteredFolders.forEach(folder => {
         const actionButtonHtml = `
-            <a href="${folder.downloadUrl}" target="_blank" class="action-container">
-                <div class="action-icon-box">
-                    <i class="fa-solid fa-crown"></i>
-                </div>
-                <span class="action-name">${folder.name}</span>
+            <a href="${folder.downloadUrl}" target="_blank" class="action-container" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; width: 150px; transition: all 0.3s ease;">
+                <div class="action-icon-box" style="width: 85px; height: 85px; background: #ffffff; border-radius: 22px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 2px solid #D4AF37; margin-bottom: 12px; font-size: 40px; color: #D4AF37;">
+                    <i class="fa-solid fa-graduation-cap"></i> </div>
+                <span class="action-name" style="font-size: 0.85rem; font-weight: 600; color: #0F1A30; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.8em; width: 140px;">
+                    ${folder.name}
+                </span>
             </a>
         `;
         grid.innerHTML += actionButtonHtml;
     });
 }
-
 // Lắng nghe sự kiện tìm kiếm
 document.getElementById('gallerySearch').addEventListener('keyup', function(e) {
     renderGallery(e.target.value);
@@ -1030,6 +1036,7 @@ console.log("⚡ Hệ thống đã được tối ưu hóa tốc độ mà khôn
     })();    
 </body>
 </html>
+
 
 
 
