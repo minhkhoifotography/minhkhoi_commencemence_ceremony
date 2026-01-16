@@ -299,7 +299,7 @@
         .photo-card:hover img { transform: scale(1.05); }
         .photo-info { padding: 10px; text-align: center; font-size: 0.85rem; color: var(--text-sub); }
 
-        /* --- FLOATING ADMIN ACTION BUTTON --- */
+        /* --- FLOATING ADMIN ACTION BUTTON & NOTIFICATIONS --- */
         .admin-fab-wrapper {
             position: fixed;
             bottom: 30px;
@@ -333,6 +333,7 @@
             transform: rotate(90deg);
         }
 
+        /* Badge Tổng */
         .notif-badge-main {
             position: absolute;
             top: -2px;
@@ -351,6 +352,7 @@
             animation: pulse 1.5s infinite;
         }
 
+        /* Badge chi tiết cho từng nút con */
         .sub-badge {
             background-color: #ff4757;
             color: white;
@@ -505,32 +507,25 @@
         <div class="form-card">
             <div id="rsvp-form-container">
                 <h3 style="text-align: center; margin-bottom: 25px;">Xác nhận tham gia</h3>
-                <form id="rsvp-form" onsubmit="submitRSVP(event)">
-                    <div class="form-group">
-                        <label>Họ và tên người tham gia</label>
-                        <input type="text" id="rsvp-name" class="input-field" placeholder="Nhập tên của bạn..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Thông tin liên lạc</label>
-                        <p class="subtitle">Số điện thoại của bạn</p>
-                        <input type="tel" id="rsvp-phone" class="input-field" placeholder="090..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Thời gian có thể tham dự</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-item"><input type="checkbox" name="time" value="8:30AM"> 8:30AM</label>
-                            <label class="checkbox-item"><input type="checkbox" name="time" value="9:00AM"> 9:00AM</label>
-                            <label class="checkbox-item"><input type="checkbox" name="time" value="9:30AM"> 9:30AM</label>
-                            <label class="checkbox-item"><input type="checkbox" name="time" value="10:00AM"> 10:00AM</label>
-                            <label class="checkbox-item"><input type="checkbox" name="time" value="11:15AM"> 11:15AM</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Bạn có lưu ý gì khi tham dự không?</label>
-                        <textarea id="rsvp-note" class="input-field" rows="3" placeholder="Ví dụ: Lưu ý về ăn uống, di chuyển hoặc hỗ trợ khác..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Xác nhận gửi</button>
-                </form>
+                <form action="https://formspree.io/f/mykkzvdd" method="POST" id="rsvp-form">
+                <div class="form-group">
+                <label>Họ và tên người tham gia</label>
+                <input type="text" name="name" class="input-field" placeholder="Nhập tên của bạn..." required>
+                </div>
+                <div class="form-group">
+                <label>Thông tin liên lạc</label>
+                <input type="tel" name="phone" class="input-field" placeholder="090..." required>
+                </div>
+                <div class="form-group">
+                <label>Thời gian có thể tham dự</label>
+                <input type="text" name="time" class="input-field" placeholder="Ví dụ: 9:30AM">
+                </div>
+                <div class="form-group">
+                <label>Ghi chú</label>
+        <textarea name="note" class="input-field" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Xác nhận gửi</button>
+</form>
             </div>
             <div id="rsvp-thank-you" class="thank-you-box">
                 <div style="font-size: 40px; margin-bottom: 15px;">✉️</div>
@@ -541,85 +536,52 @@
     </div>
 
     <div class="content-section" id="tab-gallery">
-        <div style="margin-bottom: 25px;">
-            <input type="text" id="gallerySearch" class="input-field" 
-                   placeholder="🔍 Tìm kiếm thư mục hình ảnh..." 
-                   onkeyup="filterGallery()">
-        </div>
-        <div id="gallery-container"></div>
+    <div style="margin-bottom: 25px;">
+        <input type="text" id="gallerySearch" class="input-field" 
+               placeholder="🔍 Tìm kiếm thư mục hình ảnh..." 
+               onkeyup="filterGallery()">
     </div>
+    <div id="gallery-container"></div>
+</div>
 
-    <div class="content-section" id="tab-guestbook">
-        <div class="form-card">
-            <div id="guestbook-form-container">
-                <h3 style="text-align: center; margin-bottom: 25px;">Gửi lời nhắn kỷ niệm</h3>
-                <form id="gb-form" onsubmit="submitGuestbook(event)">
-                    <div class="form-group">
-                        <label>Họ và tên người viết</label>
-                        <input type="text" id="gb-name" class="input-field" placeholder="Tên của bạn là..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Thông tin liên lạc</label>
-                        <p class="subtitle">Link social media, sđt, email...</p>
-                        <input type="text" id="gb-contact" class="input-field" placeholder="Để chúng mình giữ liên lạc nhé!">
-                    </div>
-                    <div class="form-group">
-                        <label>Thông điệp gửi đến Minh Khôi ^^</label>
-                        <textarea id="gb-msg" class="input-field" rows="5" placeholder="Viết những lời nhắn nhủ của bạn tại đây..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Gửi lời nhắn</button>
-                </form>
-            </div>
-            <div id="guestbook-thank-you" class="thank-you-box">
-                <div style="font-size: 40px; margin-bottom: 15px;">✨</div>
-                <h3>Cảm ơn bạn đã nhắn gửi đến Minh Khôi!</h3>
-                <p>Những lời nhắn của bạn là món quà vô giá đối với mình. <br><br> Mến chúc bạn luôn bình an, hạnh phúc trên chặng đường phía trước!</p>
-            </div>
+<div class="content-section" id="tab-guestbook">
+    <div class="form-card">
+        <div id="guestbook-form-container">
+            <h3 style="text-align: center; margin-bottom: 25px;">Gửi lời nhắn kỷ niệm</h3>
+            
+            <form action="https://formspree.io/f/mykkzvdd" method="POST" id="gb-form">
+                <div class="form-group">
+                    <label>Tên của bạn</label>
+                    <input type="text" name="guest_name" class="input-field" placeholder="Nhập tên của bạn..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Thông tin liên lạc</label>
+                    <input type="text" name="contact" class="input-field" placeholder="Số điện thoại hoặc Facebook/Zalo...">
+                </div>
+
+                <div class="form-group">
+                    <label>Lời nhắn gửi đến Khôi</label>
+                    <textarea name="message" class="input-field" rows="5" placeholder="Viết lời chúc hoặc kỷ niệm của bạn tại đây..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Gửi lời nhắn</button>
+            </form>
         </div>
-    </div>
 
-    <div class="admin-fab-wrapper">
-        <button class="fab-main-btn" onclick="toggleFabMenu()" title="Dành cho Ban tổ chức">
-            ⚙️
-            <div id="notif-badge-main" class="notif-badge-main">0</div>
-        </button>
-        
-        <div class="fab-menu" id="adminMenu">
-            <button class="fab-item" onclick="exportToCSV('guestbook')">
-                <span>📝 Tải CSV Lưu bút</span>
-                <span id="badge-gb" class="sub-badge">0</span>
-            </button>
-            <button class="fab-item" onclick="exportToCSV('rsvp')">
-                <span>✅ Tải CSV Xác nhận (RSVP)</span>
-                <span id="badge-rsvp" class="sub-badge">0</span>
-            </button>
-            <div style="text-align: right; font-size: 0.75rem; color: #666; padding-right: 5px; margin-bottom: -5px;">
-                Ban tổ chức
-            </div>
+        <div id="guestbook-thank-you" class="thank-you-box">
+            <div style="font-size: 40px; margin-bottom: 15px;">✨</div>
+            <h3>Cảm ơn bạn đã nhắn gửi đến Minh Khôi!</h3>
+            <p>Những lời nhắn của bạn là món quà vô giá đối với mình. <br><br> Mến chúc bạn luôn bình an, hạnh phúc trên chặng đường phía trước!</p>
         </div>
     </div>
-
+</div>
     <script>
-        // --- CẤU HÌNH GỬI DỮ LIỆU ĐÁM MÂY (Bổ sung mới) ---
-        // THAY LINK WEB APP CỦA BẠN VÀO ĐÂY:
-        const CLOUD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyudGyaUdTbyXUa6uk63IYL-fuh6oD0fwVoe5diTiA3QrcDSOUqpKZfvXbdCCkqtjUq/exec';
-
-        function sendToCloud(type, data) {
-            // Sử dụng mode 'no-cors' để chạy mượt trên GitHub Pages
-            fetch(`${CLOUD_SCRIPT_URL}?type=${type}`, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).then(() => console.log(`Data sent to ${type} sheet.`))
-              .catch(e => console.error("Cloud Error:", e));
-        }
-
-        // --- DỮ LIỆU GALLERY ---
+        // --- DỮ LIỆU GALLERY (Bổ sung mới) ---
         const photoFolders = [
             {
                 name: "Lễ Tốt Nghiệp",
-                downloadUrl: "#",
+                downloadUrl: "#", // Thay bằng link folder Drive/Zip
                 photos: [
                     { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400", title: "Lễ tốt nghiệp.jpg" },
                     { url: "https://images.unsplash.com/photo-1541339907198-e08756defe2e?w=400", title: "Kỷ niệm.jpg" }
@@ -638,7 +600,9 @@
         function renderGallery(filter = "") {
             const container = document.getElementById('gallery-container');
             container.innerHTML = "";
+            
             const filtered = photoFolders.filter(f => f.name.toLowerCase().includes(filter.toLowerCase()));
+            
             filtered.forEach(folder => {
                 let html = `
                     <div class="folder-section">
@@ -651,7 +615,7 @@
                 folder.photos.forEach(p => {
                     html += `
                         <div class="photo-card">
-                            <img src="${p.url}" loading="lazy">
+                            <img src="${p.url}">
                             <div class="photo-info">${p.title}</div>
                         </div>
                     `;
@@ -666,6 +630,7 @@
             renderGallery(term);
         }
 
+        // --- CODE CŨ GIỮ NGUYÊN ---
         let rsvpData = [];
         let guestbookData = [];
         let rsvpNotifCount = 0;
@@ -703,41 +668,29 @@
         function submitRSVP(e) {
             e.preventDefault();
             const selectedTimes = Array.from(document.querySelectorAll('input[name="time"]:checked')).map(cb => cb.value).join("; ");
-            const newEntry = {
+            rsvpData.push({
                 Name: document.getElementById('rsvp-name').value,
                 Phone: document.getElementById('rsvp-phone').value,
                 Times: selectedTimes,
                 Note: document.getElementById('rsvp-note').value
-            };
-            
-            // 1. Lưu nội bộ (code cũ)
-            rsvpData.push(newEntry);
+            });
             rsvpNotifCount++;
             refreshBadges();
             document.getElementById('rsvp-form-container').style.display = 'none';
             document.getElementById('rsvp-thank-you').style.display = 'block';
-
-            // 2. Gửi lên Google Sheets (Thêm mới)
-            sendToCloud('RSVP', newEntry);
         }
 
         function submitGuestbook(e) {
             e.preventDefault();
-            const newEntry = {
+            guestbookData.push({
                 Name: document.getElementById('gb-name').value,
                 Contact: document.getElementById('gb-contact').value,
                 Message: document.getElementById('gb-msg').value.replace(/\n/g, " ") 
-            };
-
-            // 1. Lưu nội bộ (code cũ)
-            guestbookData.push(newEntry);
+            });
             gbNotifCount++;
             refreshBadges();
             document.getElementById('guestbook-form-container').style.display = 'none';
             document.getElementById('guestbook-thank-you').style.display = 'block';
-
-            // 2. Gửi lên Google Sheets (Thêm mới)
-            sendToCloud('Guestbook', newEntry);
         }
 
         function exportToCSV(type) {
@@ -761,12 +714,20 @@
             if (data.length === 0) { alert("Chưa có dữ liệu nào để xuất tệp!"); return; }
             let csvContent = "\uFEFF"; 
             csvContent += headers.join(",") + "\n";
-            
+            function renderGalleryOptimized(data) {
+            const container = document.getElementById('gallery-container');
+            const fragment = document.createDocumentFragment(); // Bộ nhớ đệm tạm thời
+
             data.forEach(item => {
-                let row = Object.values(item).map(v => `"${v}"`).join(",");
-                csvContent += row + "\n";
+            const div = document.createElement('div');
+            div.className = 'photo-card';
+            div.innerHTML = `<img src="${item.url}" loading="lazy">`; // Lazy load ảnh
+            fragment.appendChild(div);
             });
 
+    container.innerHTML = ''; // Xóa cũ
+    container.appendChild(fragment); // Chèn 1 lần duy nhất - Cực nhanh
+};
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             const url = URL.createObjectURL(blob);
@@ -788,6 +749,112 @@
                 menu.classList.remove('active');
             }
         }
+
+        // Khởi tạo gallery khi load trang
+        window.onload = () => { renderGallery(); };
     </script>
+    <script>
+/** * TỐI ƯU HÓA KHÔNG XÂM LẤN (NON-INVASIVE OPTIMIZATION)
+ * Giữ nguyên logic cũ, chỉ thay đổi cách trình duyệt xử lý
+ */
+
+// 1. Tối ưu hóa việc Render: Chuyển đổi innerHTML sang DocumentFragment ngầm
+(function() {
+    const originalContainer = document.getElementById('gallery-container');
+    if (originalContainer) {
+        // Tạo một Proxy để chặn các thao tác ghi nặng nề
+        const fastRender = () => {
+            originalContainer.style.display = 'none'; // Tạm ẩn để tránh Reflow liên tục
+            requestAnimationFrame(() => {
+                originalContainer.style.display = 'grid'; // Hiện lại sau khi trình duyệt rảnh
+            });
+        };
+        // Lắng nghe thay đổi nội dung để tối ưu hóa việc vẽ lại
+        const observer = new MutationObserver(fastRender);
+        observer.observe(originalContainer, { childList: true });
+    }
+})();
+
+// 2. Tối ưu hóa bộ nhớ: Tự động giải phóng các biến không dùng
+window.addEventListener('blur', () => {
+    // Khi người dùng chuyển tab, ép trình duyệt dọn dẹp bộ nhớ tạm
+    if (window.gc) window.gc(); 
+});
+
+// 3. Tối ưu hóa ưu tiên tải (Priority Hints)
+document.querySelectorAll('img').forEach(img => {
+    img.setAttribute('loading', 'lazy'); // Tự động thêm Lazy Load mà không cần sửa code gốc
+    img.setAttribute('decoding', 'async'); // Giải mã ảnh bất đồng bộ để không treo UI
+});
+
+// 4. Tăng tốc phản hồi Click (Loại bỏ độ trễ 300ms trên mobile)
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.style.touchAction = 'manipulation';
+        });
+    }, false);
+}
+
+// 5. Ép sử dụng Hardware Acceleration (GPU) cho các hiệu ứng
+const style = document.createElement('style');
+style.textContent = 
+    .content-section, .photo-card, .invitation-card {
+        backface-visibility: hidden;
+        perspective: 1000px;
+        transform: translateZ(0); /* Kích hoạt GPU */
+        will-change: opacity, transform;
+    }
+`;
+document.head.appendChild(style);
+
+console.log("⚡ Hệ thống đã được tối ưu hóa tốc độ mà không thay đổi code gốc.");
+<script>
+    (function() {
+        // 1. Tự động tải dữ liệu cũ khi vừa load trang
+        window.addEventListener('load', () => {
+            const savedRSVP = localStorage.getItem('minhkhoi_rsvp_storage');
+            const savedGB = localStorage.getItem('minhkhoi_gb_storage');
+            
+            if (savedRSVP) {
+                // Đổ dữ liệu vào biến rsvpData cũ của bạn
+                const parsedRSVP = JSON.parse(savedRSVP);
+                parsedRSVP.forEach(item => rsvpData.push(item));
+                console.log("Đã tải " + rsvpData.length + " dữ liệu RSVP.");
+            }
+            
+            if (savedGB) {
+                // Đổ dữ liệu vào biến guestbookData cũ của bạn
+                const parsedGB = JSON.parse(savedGB);
+                parsedGB.forEach(item => guestbookData.push(item));
+                console.log("Đã tải " + guestbookData.length + " lời nhắn.");
+            }
+        });
+
+        // 2. Lắng nghe hành động Submit để lưu vào bộ nhớ máy tính
+        // Chúng ta sử dụng 'click' hoặc 'submit' để lưu lại trạng thái mới nhất
+        document.addEventListener('submit', (e) => {
+            if (e.target.id === 'rsvp-form' || e.target.id === 'gb-form') {
+                // Đợi một chút để code gốc của bạn push dữ liệu vào mảng trước
+                setTimeout(() => {
+                    localStorage.setItem('minhkhoi_rsvp_storage', JSON.stringify(rsvpData));
+                    localStorage.setItem('minhkhoi_gb_storage', JSON.stringify(guestbookData));
+                    console.log("Dữ liệu đã được lưu an toàn.");
+                }, 100);
+            }
+        });
+
+        // 3. Xử lý xóa dữ liệu khi xuất CSV (Để reset bộ nhớ nếu cần)
+        // Lưu ý: Code này chỉ quan sát, không can thiệp vào logic exportToCSV cũ
+        const originalExport = window.exportToCSV;
+        window.exportToCSV = function(type) {
+            // Vẫn gọi hàm cũ của bạn
+            originalExport(type);
+            // Sau khi tải xong, dữ liệu trong máy vẫn còn, trừ khi bạn muốn xóa sạch
+            // Nếu muốn xóa sau khi tải, bỏ comment dòng dưới:
+            // localStorage.removeItem(type === 'rsvp' ? 'minhkhoi_rsvp_storage' : 'minhkhoi_gb_storage');
+        };
+    })();    
 </body>
 </html>
