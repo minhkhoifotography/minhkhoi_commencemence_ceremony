@@ -7,72 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&family=Great+Vibes&family=Courier+Prime&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        .action-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 40px 20px;
-    padding: 30px 0;
-    justify-items: center;
-}
-
-.action-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.action-icon-box {
-    width: 85px;
-    height: 85px;
-    background: #ffffff;
-    border-radius: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-    border: 2px solid #D4AF37; /* Viền vàng kim */
-    margin-bottom: 12px;
-    font-size: 38px;
-    color: #D4AF37; /* Màu vương miện vàng */
-}
-
-.action-container:hover .action-icon-box {
-    transform: translateY(-5px);
-    background: #D4AF37;
-    color: #fff;
-}
-
-.action-name {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #0F1A30;
-    text-align: center;
-    text-transform: uppercase;
-    width: 140px;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 2.8em;
-}
-        .map-container {
-    max-width: 500px;
-    margin: 0 auto 30px auto;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.03);
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 300px; /* Độ cao vừa phải cho bản đồ */
-    border: none;
-    display: block;
-}
         :root {
             --palette-beige: #DCC6B3;        
             --palette-black: #0C0C0C;        
@@ -124,9 +58,7 @@
             cursor: pointer; 
             transition: opacity 0.3s;
         }
-        .brand-section:hover {
-            opacity: 0.8;
-        }
+        .brand-section:hover { opacity: 0.8; }
 
         .logo-circle {
             width: 45px; height: 45px;
@@ -135,10 +67,7 @@
             font-size: 20px; color: var(--palette-navy);
             transition: transform 0.3s;
         }
-        
-        .brand-section:hover .logo-circle {
-            transform: scale(1.1);
-        }
+        .brand-section:hover .logo-circle { transform: scale(1.1); }
 
         .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
         .nav-item {
@@ -151,7 +80,6 @@
         /* --- LAYOUT CHUNG --- */
         .content-section { max-width: 1000px; margin: 0 auto; display: none; }
         .content-section.active { display: block; animation: fadeIn 0.5s; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- THIỆP MỜI --- */
@@ -167,399 +95,114 @@
             position: relative;
             color: #333;
         }
+        .curved-text-container { width: 100%; height: 100px; margin-bottom: -20px; }
+        .curved-text-path { fill: transparent; }
+        .curved-text { font-family: 'Courier Prime', monospace; font-size: 14px; letter-spacing: 2px; fill: #333; text-transform: uppercase; font-weight: 600; }
+        .grad-cap-icon { width: 120px; margin: 0 auto; display: block; }
+        .intro-text { font-family: 'Courier Prime', monospace; font-size: 1rem; color: #444; margin-top: 20px; letter-spacing: 0.5px; }
+        .script-name { font-family: 'Great Vibes', cursive; font-size: 4rem; color: var(--gold-text); margin: 0; line-height: 1.2; font-weight: 400; }
+        .main-event-title { font-family: 'Courier Prime', monospace; text-transform: uppercase; letter-spacing: 4px; font-size: 1.4rem; color: #333; margin-top: 5px; font-weight: 600; }
+        .sub-event-title { font-family: 'Courier Prime', monospace; text-transform: uppercase; letter-spacing: 6px; font-size: 1.4rem; color: #333; margin-bottom: 20px; font-weight: 600; }
 
-        .curved-text-container {
-            width: 100%;
-            height: 100px;
-            margin-bottom: -20px;
-        }
-        .curved-text-path {
-            fill: transparent;
-        }
-        .curved-text {
-            font-family: 'Courier Prime', monospace;
-            font-size: 14px;
-            letter-spacing: 2px;
-            fill: #333;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
+        .details-container { border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 15px 0; margin: 25px 0; display: flex; align-items: center; justify-content: center; }
+        .detail-col { padding: 0 15px; text-align: center; }
+        .detail-col.center { border-left: 1px solid #555; border-right: 1px solid #555; flex: 1; }
+        .gold-label { color: var(--gold-text); font-weight: bold; font-size: 1.4rem; font-family: 'Courier Prime', monospace; display: block; line-height: 1; }
+        .gold-number { color: var(--gold-text); font-weight: bold; font-size: 1.8rem; font-family: 'Courier Prime', monospace; display: block; margin-top: 5px; }
+        .location-text { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #333; line-height: 1.4; }
+        .dresscode-text { font-family: 'Courier Prime', monospace; font-size: 1rem; color: #333; margin-bottom: 15px; }
+        .palette-row { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        .color-dot { width: 35px; height: 35px; border-radius: 50%; display: inline-block; }
+        .rsvp-text { font-family: 'Courier Prime', monospace; font-size: 1.1rem; letter-spacing: 1px; color: #333; font-weight: 600; }
 
-        .grad-cap-icon {
-            width: 120px;
-            margin: 0 auto;
-            display: block;
+        .map-container {
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
         }
+        .map-container iframe { width: 100%; height: 300px; border: none; display: block; }
 
-        .intro-text {
-            font-family: 'Courier Prime', monospace;
-            font-size: 1rem;
-            color: #444;
-            margin-top: 20px;
-            letter-spacing: 0.5px;
-        }
-
-        .script-name {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: var(--gold-text);
-            margin: 0;
-            line-height: 1.2;
-            font-weight: 400;
-        }
-
-        .main-event-title {
-            font-family: 'Courier Prime', monospace;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 1.4rem;
-            color: #333;
-            margin-top: 5px;
-            font-weight: 600;
-        }
-        
-        .sub-event-title {
-            font-family: 'Courier Prime', monospace;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            font-size: 1.4rem;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .details-container {
-            border-top: 1px solid #555;
-            border-bottom: 1px solid #555;
-            padding: 15px 0;
-            margin: 25px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .detail-col {
-            padding: 0 15px;
-            text-align: center;
-        }
-
-        .detail-col.center {
-            border-left: 1px solid #555;
-            border-right: 1px solid #555;
-            flex: 1;
-        }
-
-        .gold-label {
-            color: var(--gold-text);
-            font-weight: bold;
-            font-size: 1.4rem;
-            font-family: 'Courier Prime', monospace;
-            display: block;
-            line-height: 1;
-        }
-        
-        .gold-number {
-            color: var(--gold-text);
-            font-weight: bold;
-            font-size: 1.8rem;
-            font-family: 'Courier Prime', monospace;
-            display: block;
-            margin-top: 5px;
-        }
-
-        .location-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
-            color: #333;
-            line-height: 1.4;
-        }
-
-        .dresscode-text {
-            font-family: 'Courier Prime', monospace;
-            font-size: 1rem;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .palette-row {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .color-dot {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .rsvp-text {
-            font-family: 'Courier Prime', monospace;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            color: #333;
-            font-weight: 600;
-        }
-
-        /* --- STYLE FORM --- */
-        .form-card {
-            background: var(--card-bg); max-width: 500px; margin: 0 auto;
-            padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
+        /* --- FORM --- */
+        .form-card { background: var(--card-bg); max-width: 500px; margin: 0 auto; padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: var(--palette-navy); }
-        .form-group .subtitle { font-size: 0.8rem; color: var(--text-sub); margin-bottom: 8px; font-style: italic; }
-        
-        .input-field {
-            width: 100%; padding: 12px; border: 1.5px solid #eee; border-radius: 10px;
-            box-sizing: border-box; font-family: inherit; font-size: 0.95rem; transition: 0.3s;
-        }
+        .input-field { width: 100%; padding: 12px; border: 1.5px solid #eee; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95rem; transition: 0.3s; }
         .input-field:focus { border-color: var(--palette-beige); outline: none; }
-
-        .checkbox-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; margin-top: 10px; }
-        .checkbox-item { display: flex; align-items: center; gap: 5px; font-size: 0.85rem; cursor: pointer; }
-
-        .btn-submit {
-            width: 100%; background: var(--palette-navy); color: white; border: none;
-            padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.3s;
-        }
+        .btn-submit { width: 100%; background: var(--palette-navy); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.3s; }
         .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(30, 44, 72, 0.2); }
-
         .thank-you-box { text-align: center; padding: 20px 10px; display: none; }
 
-        /* --- GALLERY UPDATED --- */
-        .folder-section {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.05);
+        /* --- GALLERY ACTION BUTTONS --- */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 35px 20px;
+            padding: 30px 0;
+            justify-items: center;
         }
-        .folder-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--palette-grey);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
+        .action-container {
+            display: flex; flex-direction: column; align-items: center; text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 150px;
         }
-        .btn-download-folder {
-            background-color: var(--palette-peri);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.3s;
+        .action-container:hover { transform: translateY(-10px); }
+        .action-icon-box {
+            width: 90px; height: 90px;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border-radius: 24px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 10px 10px 20px #d9d9d9, -10px -10px 20px #ffffff;
+            border: 2px solid #dfc27d; margin-bottom: 15px; position: relative; overflow: hidden;
+            font-size: 38px; color: #D4AF37;
         }
-        .btn-download-folder:hover { background-color: var(--palette-navy); }
-
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .photo-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
-        .photo-card img { width: 100%; height: 160px; object-fit: cover; transition: 0.3s; }
-        .photo-card:hover img { transform: scale(1.05); }
-        .photo-info { padding: 10px; text-align: center; font-size: 0.85rem; color: var(--text-sub); }
-
-        /* --- FLOATING ADMIN ACTION BUTTON & NOTIFICATIONS --- */
-        .admin-fab-wrapper {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column-reverse; 
-            align-items: flex-end;
-            gap: 12px;
+        .action-container:hover .action-icon-box { border-color: #b8860b; box-shadow: 0 15px 30px rgba(184, 134, 11, 0.2); background: #fff; }
+        .action-name {
+            font-size: 0.95rem; font-weight: 600; color: #1a365d; text-align: center;
+            line-height: 1.4; height: 2.8em; display: -webkit-box; -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical; overflow: hidden; text-transform: uppercase; letter-spacing: 0.5px;
+            width: 140px; word-wrap: break-word;
         }
 
-        .fab-main-btn {
-            width: 56px;
-            height: 56px;
-            background-color: var(--palette-navy);
-            color: var(--palette-white);
-            border-radius: 50%;
-            border: none;
-            box-shadow: 0 4px 15px rgba(15, 26, 48, 0.3);
-            cursor: pointer;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease, background-color 0.3s;
-            position: relative;
+        /* --- MOBILE RESPONSIVE (TỐI ƯU CHO ĐIỆN THOẠI) --- */
+        @media screen and (max-width: 768px) {
+            .taskbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+                top: 0;
+            }
+            .nav-links {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                width: 100%;
+                justify-content: flex-start;
+                padding-bottom: 5px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .nav-item {
+                font-size: 0.85rem;
+                padding: 8px 12px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            body { padding: 10px; }
+            .content-section { margin-top: 10px; }
+            .invitation-card { padding: 25px 15px; width: auto; margin: 0 0 20px 0; }
+            .script-name { font-size: 2.8rem; }
+            .details-container { flex-direction: column; gap: 20px; }
+            .detail-col.center { border-left: none; border-right: none; border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 15px 0; width: 100%; }
+            .palette-row { gap: 8px; }
+            .color-dot { width: 25px; height: 25px; }
+            .map-container iframe { height: 250px; }
+            .form-card { padding: 20px; }
+            .action-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 10px; }
+            .action-container { width: 100%; }
+            .action-icon-box { width: 70px; height: 70px; font-size: 28px; }
+            .action-name { font-size: 0.8rem; -webkit-line-clamp: 3; }
         }
-
-        .fab-main-btn:hover {
-            background-color: #1e2c48;
-            transform: rotate(90deg);
-        }
-
-        /* Badge Tổng */
-        .notif-badge-main {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background-color: #ff4757;
-            color: white;
-            font-size: 11px;
-            min-width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: none; 
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border: 2px solid var(--bg-main);
-            animation: pulse 1.5s infinite;
-        }
-
-        /* Badge chi tiết cho từng nút con */
-        .sub-badge {
-            background-color: #ff4757;
-            color: white;
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-left: 10px;
-            font-weight: bold;
-            display: none; 
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .fab-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            align-items: flex-end;
-        }
-
-        .fab-menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .fab-item {
-            background-color: white;
-            color: var(--palette-navy);
-            border: 1px solid #eee;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            white-space: nowrap;
-            transition: transform 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .fab-item:hover {
-            transform: translateX(-5px);
-            color: #10b981;
-        }
-        /* --- STYLE HOÀNG GIA CHO ACTION BUTTONS --- */
-.action-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 35px 20px;
-    padding: 30px 0;
-    justify-items: center;
-}
-
-.action-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    width: 150px;
-}
-
-.action-container:hover {
-    transform: translateY(-10px);
-}
-
-.action-icon-box {
-    width: 90px;
-    height: 90px;
-    background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Hiệu ứng khối 3D nhẹ */
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 10px 10px 20px #d9d9d9, -10px -10px 20px #ffffff;
-    border: 2px solid #dfc27d; /* Viền vàng kim nhạt */
-    margin-bottom: 15px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Hiệu ứng ánh kim khi hover */
-.action-container:hover .action-icon-box {
-    border-color: #b8860b;
-    box-shadow: 0 15px 30px rgba(184, 134, 11, 0.2);
-    background: #fff;
-}
-
-.action-icon-box img {
-    width: 50px;
-    height: 50px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-}
-
-.action-name {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #1a365d; /* Màu Navy quý tộc */
-    text-align: center;
-    line-height: 1.4;
-    height: 2.8em;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-transform: uppercase; /* Chữ in hoa cho sang trọng */
-    letter-spacing: 0.5px;
-}
-    
-    /* Xử lý tên quá dài */
-    width: 140px;             /* Giới hạn độ rộng của vùng chữ */
-    word-wrap: break-word;    /* Cho phép ngắt từ */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;    /* Tối đa hiện 2 dòng, quá nữa sẽ hiện ... */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.4;
-    min-height: 2.8em;        /* Giữ khoảng cách đều nhau giữa các nút */
-}
-
-/* Đảm bảo grid không bị bóp nghẹt */
-.action-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 30px 15px;           /* Tăng khoảng cách hàng để không dính tên */
-    padding: 20px 0;
-    justify-items: center;    /* Căn giữa các nút trong ô lưới */
-}
     </style>
 </head>
 <body>
@@ -592,10 +235,8 @@
         </div>
     </div>
 
-     <div class="content-section" id="tab-invitation">
-    
-    <div class="invitation-card">
-  
+    <div class="content-section" id="tab-invitation">
+        <div class="invitation-card">
             <div class="curved-text-container">
                 <svg viewBox="0 0 500 150" width="100%" height="100%">
                     <path id="curve" d="M 75, 120 A 200, 200 0 0,1 425, 120" fill="transparent"/>
@@ -616,9 +257,7 @@
             </div>
 
             <div class="intro-text">Please join us in celebrating</div>
-            
             <h1 class="script-name">Minh Khoi's</h1>
-            
             <div class="main-event-title">GRADUATION</div>
             <div class="sub-event-title">PHOTOSHOOT</div>
 
@@ -655,165 +294,150 @@
 
             <div class="rsvp-text">RSVP +84 833 204 240</div>
         </div>
-          <div class="map-container">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.7622007925493!2d109.17109297511006!3d12.196577388052132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31705e07aad63d29%3A0x836ec36384fbd178!2zVHLGsOG7nW5nIFRIUFQgQ2h1ecOqbiBMw6ogUXXDvSDEkMO0bg!5e0!3m2!1svi!2sus!4v1768533966459!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="
-            " loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-            
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.2785669747513!2d109.1924541748281!3d12.161173288085726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31705d8f63567d1d%3A0xc66578642051069d!2zVHLGsOG7nW5nIFRIUFQgY2h1ecOqbiBMw6ogUXXDvSDEkMO0biAtIEtow6FuaCBIw7Jh!5e0!3m2!1svi!2s!4v1709218000000!5m2!1svi!2s" 
+                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-    </div>
+        </div>
 
-    <div class="form-card">
-        <div id="rsvp-form-container">
-            <h3 style="text-align: center; margin-bottom: 25px;">Xác nhận tham gia</h3>
-            <form action="https://formspree.io/f/mykkzvdd" method="POST" id="rsvp-form">
-                <div class="form-group">
-                    <label>Họ và tên người tham gia</label>
-                    <input type="text" name="name" class="input-field" placeholder="Nhập tên của bạn..." required>
-                </div>
-                <div class="form-group">
-                    <label>Thông tin liên lạc</label>
-                    <input type="tel" name="phone" class="input-field" placeholder="Số điện thoại..." required>
-                </div>
-                <div class="form-group">
-                    <label>Thời gian có thể tham dự</label>
-                    <input type="text" name="time" class="input-field" placeholder="Ví dụ: 9:30AM">
-                </div>
-                <div class="form-group">
-                    <label>Ghi chú</label>
-                    <textarea name="note" class="input-field" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Xác nhận gửi</button>
-            </form>
-        </div>
-        <div id="rsvp-thank-you" class="thank-you-box">
-            <div style="font-size: 40px; margin-bottom: 15px;">✉️</div>
-            <h3>Cảm ơn bạn đã xác nhận tham dự!</h3>
-            <p>Hẹn gặp lại bạn với những nụ cười rạng rỡ nhất!</p>
+        <div class="form-card">
+            <div id="rsvp-form-container">
+                <h3 style="text-align: center; margin-bottom: 25px;">Xác nhận tham gia</h3>
+                <form action="https://formspree.io/f/mykkzvdd" method="POST" id="rsvp-form">
+                    <div class="form-group">
+                        <label>Họ và tên người tham gia</label>
+                        <input type="text" name="name" class="input-field" placeholder="Nhập tên của bạn..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Thông tin liên lạc</label>
+                        <input type="tel" name="phone" class="input-field" placeholder="Số điện thoại..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Thời gian có thể tham dự</label>
+                        <input type="text" name="time" class="input-field" placeholder="Ví dụ: 9:30AM">
+                    </div>
+                    <div class="form-group">
+                        <label>Ghi chú</label>
+                        <textarea name="note" class="input-field" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Xác nhận gửi</button>
+                </form>
+            </div>
+            <div id="rsvp-thank-you" class="thank-you-box">
+                <div style="font-size: 40px; margin-bottom: 15px;">✉️</div>
+                <h3>Cảm ơn bạn đã xác nhận tham dự!</h3>
+                <p>Hẹn gặp lại bạn với những nụ cười rạng rỡ nhất!</p>
+            </div>
         </div>
     </div>
-</div>
 
     <div class="content-section" id="tab-gallery">
-    <div style="margin-bottom: 25px;">
-        <input type="text" id="gallerySearch" class="input-field" 
-               placeholder="🔍 Tìm kiếm thư mục hình ảnh..." 
-               onkeyup="filterGallery()">
+        <div style="margin-bottom: 25px;">
+            <input type="text" id="gallerySearch" class="input-field" 
+                   placeholder="🔍 Tìm kiếm thư mục hình ảnh..." 
+                   onkeyup="filterGallery()">
+        </div>
+        <div id="gallery-container"></div>
     </div>
-    <div id="gallery-container"></div>
-</div>
 
-<div class="content-section" id="tab-guestbook">
-    <div style="text-align: center; background: var(--card-bg); max-width: 500px; margin: 0 auto 20px auto; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-        <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--palette-navy); font-weight: 600;">
-            🎁 Bạn có muốn gửi quà đến LMK không ^^
-        </p>
-        
-        <img src="QR_image.jpg.jpg" alt="QR Code" style="width: 220px; border-radius: 12px; margin: 15px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-        
-        <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">
-            Ngân hàng: <strong>MB Bank</strong><br>
-            STK: <strong>311016112008</strong><br>
-            Tên: <strong>LUU MINH KHOI</strong>
-        </p>
-    </div>
-    <div class="form-card">
-        <div id="guestbook-form-container">
-            <h3 style="text-align: center; margin-bottom: 25px;">Gửi lời nhắn kỷ niệm</h3>
+    <div class="content-section" id="tab-guestbook">
+        <div style="text-align: center; background: var(--card-bg); max-width: 500px; margin: 0 auto 20px auto; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--palette-navy); font-weight: 600;">
+                🎁 Bạn có muốn gửi quà đến LMK không ^^
+            </p>
             
-            <form action="https://formspree.io/f/mykkzvdd" method="POST" id="gb-form">
-                <div class="form-group">
-                    <label>Tên của bạn</label>
-                    <input type="text" name="guest_name" class="input-field" placeholder="Nhập tên của bạn..." required>
-                </div>
-
-                <div class="form-group">
-                    <label>Thông tin liên lạc</label>
-                    <input type="text" name="contact" class="input-field" placeholder="Số điện thoại hoặc Facebook/Zalo...">
-                </div>
-
-                <div class="form-group">
-                    <label>Lời nhắn gửi đến Khôi</label>
-                    <textarea name="message" class="input-field" rows="5" placeholder="Viết lời chúc hoặc kỷ niệm của bạn tại đây..." required></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">Gửi lời nhắn</button>
-            </form>
+            <img src="QR_image.jpg.jpg" alt="QR Code" style="width: 220px; border-radius: 12px; margin: 15px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            
+            <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">
+                Ngân hàng: <strong>MB Bank</strong><br>
+                STK: <strong>311016112008</strong><br>
+                Tên: <strong>LUU MINH KHOI</strong>
+            </p>
         </div>
         
+        <div class="form-card">
+            <div id="guestbook-form-container">
+                <h3 style="text-align: center; margin-bottom: 25px;">Gửi lời nhắn kỷ niệm</h3>
+                <form action="https://formspree.io/f/mykkzvdd" method="POST" id="gb-form">
+                    <div class="form-group">
+                        <label>Tên của bạn</label>
+                        <input type="text" name="guest_name" class="input-field" placeholder="Nhập tên của bạn..." required>
+                    </div>
 
-    <div class="form-card">
-        </div>
-</div>
-    <div class="form-card">
-        </div>
-</div>
+                    <div class="form-group">
+                        <label>Thông tin liên lạc</label>
+                        <input type="text" name="contact" class="input-field" placeholder="Số điện thoại hoặc Facebook/Zalo...">
+                    </div>
 
-        <div id="guestbook-thank-you" class="thank-you-box">
-            <div style="font-size: 40px; margin-bottom: 15px;">✨</div>
-            <h3>Cảm ơn bạn đã nhắn gửi đến Minh Khôi!</h3>
-            <p>Những lời nhắn của bạn là món quà vô giá đối với mình. <br><br> Mến chúc bạn luôn bình an, hạnh phúc trên chặng đường phía trước!</p>
+                    <div class="form-group">
+                        <label>Lời nhắn gửi đến Khôi</label>
+                        <textarea name="message" class="input-field" rows="5" placeholder="Viết lời chúc hoặc kỷ niệm của bạn tại đây..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Gửi lời nhắn</button>
+                </form>
+            </div>
+            <div id="guestbook-thank-you" class="thank-you-box">
+                <div style="font-size: 40px; margin-bottom: 15px;">✨</div>
+                <h3>Cảm ơn bạn đã nhắn gửi đến Minh Khôi!</h3>
+                <p>Những lời nhắn của bạn là món quà vô giá đối với mình. <br><br> Mến chúc bạn luôn bình an, hạnh phúc trên chặng đường phía trước!</p>
+            </div>
         </div>
     </div>
-</div>
+
     <script>
-        // --- DỮ LIỆU GALLERY (Bổ sung mới) ---
+        // --- DỮ LIỆU GALLERY ---
         const photoFolders = [
-    {
-        name: "MinhKhoi_GraduationPhotoshoot",
-        downloadUrl: "https://drive.google.com/drive/folders/1rmopYHyyEkl6Eoy7zeeLVxyuGYYRqLhf?usp=sharing",
-    },
-    {
-        name: "Anna Uwu",
-        downloadUrl: "https://drive.google.com/drive/folders/1cNagl52lth6eh-rKwIU2KeH00qb_IQf5?usp=sharing",
-    }
-];
+            {
+                name: "MinhKhoi_GraduationPhotoshoot",
+                downloadUrl: "https://drive.google.com/drive/folders/1rmopYHyyEkl6Eoy7zeeLVxyuGYYRqLhf?usp=sharing",
+            },
+            {
+                name: "Anna Uwu",
+                downloadUrl: "https://drive.google.com/drive/folders/1cNagl52lth6eh-rKwIU2KeH00qb_IQf5?usp=sharing",
+            }
+        ];
 
-        // --- HÀM HIỂN THỊ THEO KIỂU ACTION BUTTON (GIỮ NGUYÊN DỮ LIỆU CŨ) ---
-function renderGallery(filter = "") {
-    const container = document.getElementById('gallery-container');
-    // Tạo lưới hiển thị với khoảng cách hàng rộng hơn để tránh đè tên
-    container.innerHTML = `<div class="action-grid" id="action-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 45px 20px; justify-items: center; padding: 30px 0;"></div>`;
-    const grid = document.getElementById('action-grid');
+        // --- HÀM HIỂN THỊ GALLERY ---
+        function renderGallery(filter = "") {
+            const container = document.getElementById('gallery-container');
+            container.innerHTML = `<div class="action-grid" id="action-grid"></div>`;
+            const grid = document.getElementById('action-grid');
 
-    const filteredFolders = photoFolders.filter(folder => 
-        folder.name.toLowerCase().includes(filter.toLowerCase())
-    );
+            const filteredFolders = photoFolders.filter(folder => 
+                folder.name.toLowerCase().includes(filter.toLowerCase())
+            );
 
-    if (filteredFolders.length === 0) {
-        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #94a3b8; padding: 40px;">Không tìm thấy thư mục nào phù hợp...</p>`;
-        return;
-    }
+            if (filteredFolders.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #94a3b8; padding: 40px;">Không tìm thấy thư mục nào phù hợp...</p>`;
+                return;
+            }
 
-    filteredFolders.forEach(folder => {
-        const actionButtonHtml = `
-            <a href="${folder.downloadUrl}" target="_blank" class="action-container" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; width: 150px; transition: all 0.3s ease;">
-                <div class="action-icon-box" style="width: 85px; height: 85px; background: #ffffff; border-radius: 22px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 2px solid #D4AF37; margin-bottom: 12px; font-size: 40px; color: #D4AF37;">
-                    <i class="fa-solid fa-graduation-cap"></i> </div>
-                <span class="action-name" style="font-size: 0.85rem; font-weight: 600; color: #0F1A30; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.8em; width: 140px;">
-                    ${folder.name}
-                </span>
-            </a>
-        `;
-        grid.innerHTML += actionButtonHtml;
-    });
-}
-// Lắng nghe sự kiện tìm kiếm
-document.getElementById('gallerySearch').addEventListener('keyup', function(e) {
-    renderGallery(e.target.value);
-});
+            filteredFolders.forEach(folder => {
+                const actionButtonHtml = `
+                    <a href="${folder.downloadUrl}" target="_blank" class="action-container">
+                        <div class="action-icon-box">
+                            <i class="fa-solid fa-graduation-cap"></i> 
+                        </div>
+                        <span class="action-name">${folder.name}</span>
+                    </a>
+                `;
+                grid.innerHTML += actionButtonHtml;
+            });
+        }
+
+        // --- SỰ KIỆN SEARCH ---
+        document.getElementById('gallerySearch').addEventListener('keyup', function(e) {
+            renderGallery(e.target.value);
+        });
         function filterGallery() {
             const term = document.getElementById('gallerySearch').value;
             renderGallery(term);
         }
 
-        // --- CODE CŨ GIỮ NGUYÊN ---
-        let rsvpData = [];
-        let guestbookData = [];
-        let rsvpNotifCount = 0;
-        let gbNotifCount = 0;
-
+        // --- NAVIGATION LOGIC ---
         function showTab(tabId, element) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
@@ -830,230 +454,73 @@ document.getElementById('gallerySearch').addEventListener('keyup', function(e) {
             if(homeBtn) homeBtn.classList.add('active');
         }
 
-        function refreshBadges() {
-            const mainBadge = document.getElementById('notif-badge-main');
-            const gbBadge = document.getElementById('badge-gb');
-            const rsvpBadge = document.getElementById('badge-rsvp');
-            let total = rsvpNotifCount + gbNotifCount;
-            if (total > 0) { mainBadge.innerText = total; mainBadge.style.display = 'flex'; } 
-            else { mainBadge.style.display = 'none'; }
-            if (gbNotifCount > 0) { gbBadge.innerText = gbNotifCount; gbBadge.style.display = 'inline-block'; } 
-            else { gbBadge.style.display = 'none'; }
-            if (rsvpNotifCount > 0) { rsvpBadge.innerText = rsvpNotifCount; rsvpBadge.style.display = 'inline-block'; } 
-            else { rsvpBadge.style.display = 'none'; }
-        }
+        // --- FORM LOGIC & LOCAL STORAGE ---
+        let rsvpData = [];
+        let guestbookData = [];
 
-        function submitRSVP(e) {
-            e.preventDefault();
-            const selectedTimes = Array.from(document.querySelectorAll('input[name="time"]:checked')).map(cb => cb.value).join("; ");
-            rsvpData.push({
-                Name: document.getElementById('rsvp-name').value,
-                Phone: document.getElementById('rsvp-phone').value,
-                Times: selectedTimes,
-                Note: document.getElementById('rsvp-note').value
-            });
-            rsvpNotifCount++;
-            refreshBadges();
-            document.getElementById('rsvp-form-container').style.display = 'none';
-            document.getElementById('rsvp-thank-you').style.display = 'block';
-        }
-
-        function submitGuestbook(e) {
-            e.preventDefault();
-            guestbookData.push({
-                Name: document.getElementById('gb-name').value,
-                Contact: document.getElementById('gb-contact').value,
-                Message: document.getElementById('gb-msg').value.replace(/\n/g, " ") 
-            });
-            gbNotifCount++;
-            refreshBadges();
-            document.getElementById('guestbook-form-container').style.display = 'none';
-            document.getElementById('guestbook-thank-you').style.display = 'block';
-        }
-
-        function exportToCSV(type) {
-            const verify = confirm("Bạn xác nhận muốn tải xuống dữ liệu này chứ?");
-            if (!verify) return;
-            let data = [];
-            let filename = "";
-            let headers = [];
-            if (type === 'rsvp') {
-                data = rsvpData;
-                filename = "Danh_sach_RSVP_MinhKhoi.csv";
-                headers = ["Ho va Ten", "So Dien Thoai", "Khung Gio", "Luu Y"];
-                rsvpNotifCount = 0;
-            } else {
-                data = guestbookData;
-                filename = "Luu_but_MinhKhoi.csv";
-                headers = ["Ho va Ten", "Thong Tin Lien Lac", "Loi Nhan"];
-                gbNotifCount = 0;
-            }
-            refreshBadges();
-            if (data.length === 0) { alert("Chưa có dữ liệu nào để xuất tệp!"); return; }
-            let csvContent = "\uFEFF"; 
-            csvContent += headers.join(",") + "\n";
-            function renderGalleryOptimized(data) {
-            const container = document.getElementById('gallery-container');
-            const fragment = document.createDocumentFragment(); // Bộ nhớ đệm tạm thời
-
-            data.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'photo-card';
-            div.innerHTML = `<img src="${item.url}" loading="lazy">`; // Lazy load ảnh
-            fragment.appendChild(div);
-            });
-
-    container.innerHTML = ''; // Xóa cũ
-    container.appendChild(fragment); // Chèn 1 lần duy nhất - Cực nhanh
-};
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement("a");
-            const url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", filename);
-            link.click();
-        }
-
-        function toggleFabMenu() {
-            const menu = document.getElementById('adminMenu');
-            if (!menu.classList.contains('active')) {
-                const password = prompt("Vui lòng nhập mật khẩu quản trị để truy cập dữ liệu:");
-                if (password === "Lmk16112008") {
-                    menu.classList.add('active');
-                } else if (password !== null) {
-                    alert("Sai mật khẩu! Bạn không có quyền truy cập.");
-                }
-            } else {
-                menu.classList.remove('active');
-            }
-        }
-
-        // Khởi tạo gallery khi load trang
-        window.onload = () => { renderGallery(); };
-    </script>
-    <script>
-/** * TỐI ƯU HÓA KHÔNG XÂM LẤN (NON-INVASIVE OPTIMIZATION)
- * Giữ nguyên logic cũ, chỉ thay đổi cách trình duyệt xử lý
- */
-
-// 1. Tối ưu hóa việc Render: Chuyển đổi innerHTML sang DocumentFragment ngầm
-(function() {
-    const originalContainer = document.getElementById('gallery-container');
-    if (originalContainer) {
-        // Tạo một Proxy để chặn các thao tác ghi nặng nề
-        const fastRender = () => {
-            originalContainer.style.display = 'none'; // Tạm ẩn để tránh Reflow liên tục
-            requestAnimationFrame(() => {
-                originalContainer.style.display = 'grid'; // Hiện lại sau khi trình duyệt rảnh
-            });
-        };
-        // Lắng nghe thay đổi nội dung để tối ưu hóa việc vẽ lại
-        const observer = new MutationObserver(fastRender);
-        observer.observe(originalContainer, { childList: true });
-    }
-})();
-
-// 2. Tối ưu hóa bộ nhớ: Tự động giải phóng các biến không dùng
-window.addEventListener('blur', () => {
-    // Khi người dùng chuyển tab, ép trình duyệt dọn dẹp bộ nhớ tạm
-    if (window.gc) window.gc(); 
-});
-
-// 3. Tối ưu hóa ưu tiên tải (Priority Hints)
-document.querySelectorAll('img').forEach(img => {
-    img.setAttribute('loading', 'lazy'); // Tự động thêm Lazy Load mà không cần sửa code gốc
-    img.setAttribute('decoding', 'async'); // Giải mã ảnh bất đồng bộ để không treo UI
-});
-
-// 4. Tăng tốc phản hồi Click (Loại bỏ độ trễ 300ms trên mobile)
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.style.touchAction = 'manipulation';
-        });
-    }, false);
-}
-
-// 5. Ép sử dụng Hardware Acceleration (GPU) cho các hiệu ứng
-const style = document.createElement('style');
-style.textContent = 
-    .content-section, .photo-card, .invitation-card {
-        backface-visibility: hidden;
-        perspective: 1000px;
-        transform: translateZ(0); /* Kích hoạt GPU */
-        will-change: opacity, transform;
-    }
-`;
-document.head.appendChild(style);
-
-console.log("⚡ Hệ thống đã được tối ưu hóa tốc độ mà không thay đổi code gốc.");
-<script>
-    (function() {
-        // 1. Tự động tải dữ liệu cũ khi vừa load trang
+        // Khởi chạy khi load trang
         window.addEventListener('load', () => {
+            renderGallery();
+            
+            // Tải dữ liệu từ LocalStorage
             const savedRSVP = localStorage.getItem('minhkhoi_rsvp_storage');
             const savedGB = localStorage.getItem('minhkhoi_gb_storage');
             
             if (savedRSVP) {
-                // Đổ dữ liệu vào biến rsvpData cũ của bạn
                 const parsedRSVP = JSON.parse(savedRSVP);
                 parsedRSVP.forEach(item => rsvpData.push(item));
-                console.log("Đã tải " + rsvpData.length + " dữ liệu RSVP.");
             }
-            
             if (savedGB) {
-                // Đổ dữ liệu vào biến guestbookData cũ của bạn
                 const parsedGB = JSON.parse(savedGB);
                 parsedGB.forEach(item => guestbookData.push(item));
-                console.log("Đã tải " + guestbookData.length + " lời nhắn.");
             }
         });
 
-        // 2. Lắng nghe hành động Submit để lưu vào bộ nhớ máy tính
-        // Chúng ta sử dụng 'click' hoặc 'submit' để lưu lại trạng thái mới nhất
-        document.addEventListener('submit', (e) => {
-            if (e.target.id === 'rsvp-form' || e.target.id === 'gb-form') {
-                // Đợi một chút để code gốc của bạn push dữ liệu vào mảng trước
-                setTimeout(() => {
-                    localStorage.setItem('minhkhoi_rsvp_storage', JSON.stringify(rsvpData));
-                    localStorage.setItem('minhkhoi_gb_storage', JSON.stringify(guestbookData));
-                    console.log("Dữ liệu đã được lưu an toàn.");
-                }, 100);
-            }
+        // Xử lý submit form và lưu LocalStorage
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            // Lưu ý: Formspree sẽ chuyển hướng trang, nên ta chỉ lưu data trước khi gửi
+            const selectedTimes = Array.from(document.querySelectorAll('input[name="time"]:checked')).map(cb => cb.value).join("; ");
+            const newData = {
+                Name: document.querySelector('input[name="name"]').value,
+                Phone: document.querySelector('input[name="phone"]').value,
+                Times: selectedTimes || document.querySelector('input[name="time"]').value,
+                Note: document.querySelector('textarea[name="note"]').value
+            };
+            rsvpData.push(newData);
+            localStorage.setItem('minhkhoi_rsvp_storage', JSON.stringify(rsvpData));
+            
+            // UI Update (Dù Formspree sẽ redirect, nhưng giữ code này cho UX nếu dùng AJAX)
+            document.getElementById('rsvp-form-container').style.display = 'none';
+            document.getElementById('rsvp-thank-you').style.display = 'block';
         });
 
-        // 3. Xử lý xóa dữ liệu khi xuất CSV (Để reset bộ nhớ nếu cần)
-        // Lưu ý: Code này chỉ quan sát, không can thiệp vào logic exportToCSV cũ
-        const originalExport = window.exportToCSV;
-        window.exportToCSV = function(type) {
-            // Vẫn gọi hàm cũ của bạn
-            originalExport(type);
-            // Sau khi tải xong, dữ liệu trong máy vẫn còn, trừ khi bạn muốn xóa sạch
-            // Nếu muốn xóa sau khi tải, bỏ comment dòng dưới:
-            // localStorage.removeItem(type === 'rsvp' ? 'minhkhoi_rsvp_storage' : 'minhkhoi_gb_storage');
-        };
-    })();    
+        document.getElementById('gb-form').addEventListener('submit', function(e) {
+            const newData = {
+                Name: document.querySelector('input[name="guest_name"]').value,
+                Contact: document.querySelector('input[name="contact"]').value,
+                Message: document.querySelector('textarea[name="message"]').value.replace(/\n/g, " ") 
+            };
+            guestbookData.push(newData);
+            localStorage.setItem('minhkhoi_gb_storage', JSON.stringify(guestbookData));
+            
+            document.getElementById('guestbook-form-container').style.display = 'none';
+            document.getElementById('guestbook-thank-you').style.display = 'block';
+        });
+
+        // --- OPTIMIZATION ---
+        // Tối ưu hóa lazy loading cho hình ảnh
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('loading', 'lazy'); 
+            img.setAttribute('decoding', 'async'); 
+        });
+
+        // Tăng tốc phản hồi touch
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(item => { item.style.touchAction = 'manipulation'; });
+            }, false);
+        }
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
