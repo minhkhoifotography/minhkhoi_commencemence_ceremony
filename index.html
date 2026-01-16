@@ -487,8 +487,13 @@
     cursor: pointer;
 }
 
-.action-container:hover {
-    transform: translateY(-8px);
+.action-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;             /* Cố định độ rộng container để tên không lấn sân */
+    text-decoration: none;
+    transition: transform 0.2s;
 }
 
 .action-icon-box {
@@ -510,13 +515,31 @@
     object-fit: contain;
 }
 
-.action-name {
-    font-size: 0.9rem;
-    font-weight: 600;
+..action-name {
+    font-size: 0.85rem;
+    font-weight: 500;
     color: var(--palette-navy);
     text-align: center;
-    max-width: 120px;
-    line-height: 1.3;
+    margin-top: 8px;
+    
+    /* Xử lý tên quá dài */
+    width: 140px;             /* Giới hạn độ rộng của vùng chữ */
+    word-wrap: break-word;    /* Cho phép ngắt từ */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;    /* Tối đa hiện 2 dòng, quá nữa sẽ hiện ... */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    min-height: 2.8em;        /* Giữ khoảng cách đều nhau giữa các nút */
+}
+
+/* Đảm bảo grid không bị bóp nghẹt */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 30px 15px;           /* Tăng khoảng cách hàng để không dính tên */
+    padding: 20px 0;
+    justify-items: center;    /* Căn giữa các nút trong ô lưới */
 }
     </style>
 </head>
@@ -995,6 +1018,7 @@ console.log("⚡ Hệ thống đã được tối ưu hóa tốc độ mà khôn
     })();    
 </body>
 </html>
+
 
 
 
