@@ -7,6 +7,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Lora:wght@500;600&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* Container bao phủ toàn bộ khu vực thiệp */
+.curtain-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 100;
+    display: flex;
+    overflow: hidden;
+    background: #000; /* Nền đen phía sau rèm */
+}
+
+/* Tấm rèm trái và phải */
+.curtain-left, .curtain-right {
+    width: 50%; height: 100%;
+    background: radial-gradient(circle at 50% 50%, #b30000 0%, #800000 100%);
+    background-image: repeating-linear-gradient(90deg, 
+        rgba(0,0,0,0) 0px, rgba(0,0,0,0.1) 20px, 
+        rgba(255,255,255,0.1) 40px, rgba(0,0,0,0.1) 60px);
+    transition: transform 2s cubic-bezier(0.42, 0, 0.58, 1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* Lớp phủ chứa nút bấm */
+.curtain-overlay {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    transition: opacity 0.5s;
+}
+
+.open-curtain-btn {
+    padding: 15px 30px;
+    background: #D4AF37;
+    color: white;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+/* Hiệu ứng khi kéo rèm */
+.curtain-container.open .curtain-left { transform: translateX(-100%); }
+.curtain-container.open .curtain-right { transform: translateX(100%); }
+.curtain-container.open .curtain-overlay { opacity: 0; pointer-events: none; }
 /* DÒNG 1: BIG TITLE - TÊN CHÍNH (UY NGHI) */
 .title-group h1 {
     font-family: 'Cinzel', serif !important;
@@ -387,6 +433,18 @@ label,
     </div>
 
     <div class="content-section" id="tab-invitation">
+        <div id="tab-invitation" class="tab-content">
+    <div class="curtain-container" id="curtain-box">
+        <div class="curtain-left"></div>
+        <div class="curtain-right"></div>
+        <div class="curtain-overlay">
+            <button class="open-curtain-btn" onclick="openCurtain()">Mở thiệp mời</button>
+        </div>
+    </div>
+
+    <div class="invitation-wrapper">
+        </div>
+</div>
         <div class="invitation-card">
             <div class="curved-text-container">
                 <svg viewBox="0 0 500 150" width="100%" height="100%">
@@ -595,6 +653,9 @@ label,
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
             if(tabId === 'tab-gallery') renderGallery();
+            if (id === 'invitation') {
+        resetCurtain();
+    }
         }
 
         function goHome() {
@@ -673,7 +734,35 @@ label,
             }, false);
         }
     </script>
+    <script>
+        // HÀM MỞ RÈM
+        function openCurtain() {
+            const curtain = document.getElementById('curtain-box');
+            if (curtain) {
+                curtain.classList.add('open');
+                
+                // Sau 2 giây rèm kéo xong thì ẩn hẳn để bấm được vào thiệp bên dưới
+                setTimeout(() => {
+                    curtain.style.visibility = 'hidden';
+                }, 2000);
+            }
+        }
+
+        // HÀM RESET RÈM (Để mỗi lần nhấn vào tab Thiệp mời rèm lại đóng lại)
+        // Bạn cần tìm hàm showTab(tabId) có sẵn trong file của bạn và thêm dòng này vào
+        function resetCurtain() {
+            const curtain = document.getElementById('curtain-box');
+            if (curtain) {
+                curtain.style.visibility = 'visible';
+                curtain.style.display = 'flex';
+                curtain.classList.remove('open');
+            }
+        }
+    </script>
+</body>
 </html>
+</html>
+
 
 
 
