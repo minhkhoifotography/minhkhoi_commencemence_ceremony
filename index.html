@@ -747,57 +747,52 @@ label,
     <script src="https://youtu.be/mJ_fkw5j-t0?si=8B1W6NyUYKzTrCT4"></script>
 <script>
     var player;
-    var isMuted = false;
-
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('youtube-audio-player', {
-            height: '0',
-            width: '0',
-            videoId: 'mJ_fkw5j-t0', // ID của bài Beethoven's 5 Secrets
-            playerVars: {
-                'autoplay': 1,
-                'loop': 1,
-                'playlist': 'mJ_fkw5j-t0'
-            },
-            events: {
-                'onReady': onPlayerReady
-            }
-        });
-    }
-
-    function onPlayerReady(event) {
-        event.target.setVolume(50);
-        // Do chính sách trình duyệt, nhạc có thể không tự phát nếu chưa tương tác
-        // Chúng ta sẽ phát ngay khi khách nhấn vào bất kỳ đâu trên trang
-        document.body.addEventListener('click', function() {
-            player.playVideo();
-        }, { once: true });
-    }
-
-    function toggleMusic() {
-        if (isMuted) {
-            player.unMute();
-            document.getElementById('music-icon').className = 'fas fa-volume-up';
-            isMuted = false;
-        } else {
-            player.mute();
-            document.getElementById('music-icon').className = 'fas fa-volume-mute';
-            isMuted = true;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-audio-player', {
+        height: '0',
+        width: '0',
+        videoId: 'mJ_fkw5j-t0',
+        playerVars: {
+            'autoplay': 1,
+            'loop': 1,
+            'playlist': 'mJ_fkw5j-t0',
+            'origin': window.location.origin // Thêm dòng này để xác thực nguồn
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
         }
-    }
+    });
+}
 
-    function changeVolume(value) {
-        if (player && player.setVolume) {
-            player.setVolume(value);
-            if (value == 0) {
-                document.getElementById('music-icon').className = 'fas fa-volume-mute';
-            } else {
-                document.getElementById('music-icon').className = 'fas fa-volume-up';
-            }
-        }
+function onPlayerReady(event) {
+    // Thử phát ở chế độ tắt tiếng trước để lách luật trình duyệt
+    event.target.mute();
+    event.target.playVideo();
+    
+    // Ngay khi người dùng tương tác, mở tiếng và phát mạnh hơn
+    const playOnInteraction = () => {
+        event.target.unMute();
+        event.target.setVolume(70); // Đặt âm lượng 70% cho trang trọng
+        event.target.playVideo();
+        console.log("Music started by user interaction");
+        window.removeEventListener('click', playOnInteraction);
+        window.removeEventListener('scroll', playOnInteraction);
+    };
+
+    window.addEventListener('click', playOnInteraction);
+    window.addEventListener('scroll', playOnInteraction); // Cuộn chuột cũng phát nhạc
+}
+
+function onPlayerStateChange(event) {
+    // Nếu nhạc bị dừng ngoài ý muốn, thử phát lại
+    if (event.data === YT.PlayerState.ENDED) {
+        player.playVideo();
     }
+}
 </script>
 </html>
+
 
 
 
