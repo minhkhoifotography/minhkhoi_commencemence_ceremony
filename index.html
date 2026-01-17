@@ -7,60 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Lora:wght@500;600&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-       /* Container bao quanh tab thiệp */
-#tab-invitation {
-    position: relative;
-    min-height: 600px;
-    overflow: hidden;
-}
-
-/* Khung chứa rèm */
-.curtain-container {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 999;
-    display: flex;
-    background: #000; /* Nền tối phía sau */
-}
-
-/* Tấm rèm - Ép màu đỏ nhung */
-.curtain-left, .curtain-right {
-    width: 50%;
-    height: 100%;
-    background-color: #800000 !important; /* Đỏ đậm */
-    background-image: linear-gradient(90deg, 
-        rgba(0,0,0,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.3) 100%);
-    background-size: 40px 100%;
-    transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
-    border: 1px solid rgba(0,0,0,0.2);
-}
-
-/* Nút bấm ở giữa rèm */
-.curtain-overlay {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    text-align: center;
-}
-
-.open-curtain-btn {
-    padding: 15px 40px;
-    background: #D4AF37;
-    color: white;
-    border: 2px solid #fff;
-    font-family: 'Cinzel', serif;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    transition: 0.3s;
-}
-
-/* Khi mở rèm */
-.curtain-container.open .curtain-left { transform: translateX(-100%); }
-.curtain-container.open .curtain-right { transform: translateX(100%); }
-.curtain-container.open .curtain-overlay { display: none; }
 /* DÒNG 1: BIG TITLE - TÊN CHÍNH (UY NGHI) */
 .title-group h1 {
     font-family: 'Cinzel', serif !important;
@@ -441,16 +387,6 @@ label,
     </div>
 
     <div class="content-section" id="tab-invitation">
-       <div id="tab-invitation" class="tab-content" style="display:none;">
-    <div class="curtain-container" id="curtain-box">
-        <div class="curtain-left"></div>
-        <div class="curtain-right"></div>
-        <div class="curtain-overlay">
-            <button type="button" class="open-curtain-btn" onclick="openCurtain()">
-                <i class="fas fa-envelope-open-text"></i> MỞ THIỆP MỜI
-            </button>
-        </div>
-    </div>
         <div class="invitation-card">
             <div class="curved-text-container">
                 <svg viewBox="0 0 500 150" width="100%" height="100%">
@@ -740,27 +676,10 @@ label,
             }, false);
         }
     </script>
-    <script>
-        function openCurtain() {
-    // 1. Tìm khung rèm
-    const curtainBox = document.getElementById('curtain-box');
-    
-    if (curtainBox) {
-        // 2. Thêm class 'open' để kích hoạt CSS chuyển động
-        curtainBox.classList.add('open');
-        console.log("Đang mở rèm...");
-
-        // 3. Sau 1.5 giây (khi rèm kéo xong), ẩn hẳn khung rèm để bấm được thiệp
-        setTimeout(() => {
-            curtainBox.style.display = 'none';
-        }, 1500);
-    } else {
-        console.error("Không tìm thấy khung rèm!");
-    }
-}
 </body>
 </html>
 </html>
+
 
 
 
