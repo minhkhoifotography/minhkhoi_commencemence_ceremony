@@ -32,50 +32,123 @@
             line-height: 1.6;
         }
 
-        /* --- TASKBAR --- */
-        .taskbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: var(--card-bg);
-            padding: 12px 24px;
-            border-radius: 16px;
-            max-width: 1200px;
-            margin: 0 auto 40px auto;
-            box-shadow: 0 4px 20px rgba(30, 44, 72, 0.08); 
-            flex-wrap: wrap;
-            gap: 15px;
-            border: 1px solid rgba(0,0,0,0.03);
-            position: sticky; 
-            top: 20px;
-            z-index: 1000;
-        }
+        /* --- VATICAN STYLE TASKBAR --- */
+.taskbar {
+    display: flex;
+    flex-direction: column; /* Xếp dọc: Logo trên, Menu dưới */
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    /* Bỏ bo góc và shadow đậm để giống phong cách trang trọng */
+    border-radius: 0; 
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border-bottom: 3px solid #D4AF37; /* Đường viền vàng kim đặc trưng */
+    padding: 30px 20px 15px 20px;
+    max-width: 100%; /* Tràn màn hình */
+    margin: 0 0 40px 0;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+}
 
-        .brand-section { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            cursor: pointer; 
-            transition: opacity 0.3s;
-        }
-        .brand-section:hover { opacity: 0.8; }
+.brand-section { 
+    display: flex; 
+    flex-direction: column; /* Logo nằm trên chữ */
+    align-items: center; 
+    gap: 10px; 
+    cursor: pointer; 
+    margin-bottom: 25px; /* Tạo khoảng cách với menu bên dưới */
+}
 
-        .logo-circle {
-            width: 45px; height: 45px;
-            background: linear-gradient(135deg, var(--palette-beige) 0%, var(--palette-pink) 100%);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 20px; color: var(--palette-navy);
-            transition: transform 0.3s;
-        }
-        .brand-section:hover .logo-circle { transform: scale(1.1); }
+/* Logo kiểu Vatican: Bỏ hình tròn màu mè, dùng biểu tượng lớn sang trọng */
+.logo-circle {
+    width: auto; 
+    height: auto;
+    background: transparent;
+    font-size: 48px; 
+    color: #D4AF37; /* Màu vàng kim loại */
+    transform: none !important; /* Bỏ hiệu ứng xoay cũ */
+}
 
-        .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
-        .nav-item {
-            text-decoration: none; color: var(--text-main);
-            padding: 8px 16px; border-radius: 10px; font-size: 0.95rem;
-            transition: 0.3s; font-weight: 500; cursor: pointer;
-        }
-        .nav-item.active { background-color: var(--palette-navy); color: var(--palette-white); }
+.brand-section:hover { opacity: 0.8; }
+
+.title-group {
+    text-align: center;
+}
+
+.title-group h1 {
+    font-family: 'Playfair Display', serif; /* Font chữ có chân sang trọng */
+    font-size: 1.8rem !important;
+    text-transform: uppercase; /* Chữ in hoa */
+    letter-spacing: 3px; /* Khoảng cách chữ rộng */
+    color: #0F1A30;
+    margin: 5px 0 0 0;
+}
+
+.title-group p {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem !important;
+    color: #888;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* Menu kiểu Vatican: Chữ in hoa, thanh mảnh, không có nền */
+.nav-links { 
+    display: flex; 
+    gap: 40px; 
+    flex-wrap: wrap; 
+    justify-content: center;
+    border-top: 1px solid #eee; /* Đường kẻ mờ ngăn cách */
+    padding-top: 20px;
+    width: 80%; /* Giới hạn chiều rộng đường kẻ */
+}
+
+.nav-item {
+    text-decoration: none; 
+    color: #555;
+    padding: 5px 0; 
+    border-radius: 0; /* Bỏ bo góc nút */
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif; /* Font đồng bộ */
+    font-weight: 600; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.3s ease;
+    background-color: transparent !important; /* Luôn trong suốt */
+}
+
+/* Hiệu ứng hover và active: Đổi màu chữ sang Vàng kim */
+.nav-item:hover, .nav-item.active { 
+    color: #D4AF37; 
+}
+
+/* Thêm gạch chân nhỏ khi active giống web cổ điển */
+.nav-item.active::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #D4AF37;
+    margin-top: 4px;
+    animation: fadeIn 0.3s;
+}
+
+/* --- ĐIỀU CHỈNH MOBILE CHO STYLE NÀY --- */
+@media screen and (max-width: 768px) {
+    .taskbar {
+        padding: 20px 10px;
+        border-bottom-width: 2px;
+    }
+    .title-group h1 { font-size: 1.4rem !important; letter-spacing: 1px; }
+    .nav-links { 
+        gap: 20px; 
+        width: 100%; 
+        border-top: none; /* Bỏ kẻ ngang trên mobile cho gọn */
+    }
+    .nav-item { font-size: 0.8rem; }
+}
 
         /* --- LAYOUT CHUNG --- */
         .content-section { max-width: 1000px; margin: 0 auto; display: none; }
@@ -524,4 +597,5 @@
     </script>
 </body>
 </html>
+
 
