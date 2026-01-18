@@ -7,6 +7,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Lora:wght@500;600&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* ABOUT ME SECTION STYLES */
+.about-card {
+    display: flex;
+    gap: 30px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.about-image img {
+    width: 300px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 0px #D4AF37; /* Đổ bóng kiểu nghệ thuật */
+}
+
+.about-info h2 {
+    font-family: 'Cinzel', serif;
+    color: #0F1A30;
+    margin-bottom: 20px;
+}
+
+.about-info p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.experience-list {
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+.experience-list li {
+    margin-bottom: 10px;
+}
+
+/* TỐI ƯU MOBILE (RESPONSIVE) */
+@media (max-width: 768px) {
+    .about-card {
+        flex-direction: column; /* Chuyển thành hàng dọc trên điện thoại */
+        padding: 20px;
+        align-items: center;
+    }
+
+    .about-image img {
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 20px;
+    }
+
+    .title-group h1 {
+        font-size: 2.5rem !important; /* Thu nhỏ tiêu đề chính */
+    }
+
+    .main-idea {
+        font-size: 1.5rem !important;
+    }
+
+    .bible-slogan {
+        font-size: 1.1rem !important;
+    }
+
+    .taskbar {
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .nav-item span {
+        display: none; /* Ẩn chữ trên taskbar điện thoại để tránh chật */
+    }
+
+    .nav-item i {
+        font-size: 1.5rem;
+    }
+}
         .btn-direction:hover {
     background-color: #D4AF37 !important; /* Đổi sang màu vàng kim khi hover */
     transform: translateY(-2px);
@@ -371,7 +448,8 @@ label,
 </div>
         </div>
         <div class="nav-links">
-            <div class="nav-item active" onclick="showTab('tab-intro', this)">Lời tựa</div> 
+            <div class="nav-item active" onclick="showTab('tab-intro', this)">Lời tựa</div>
+            <div class="nav-item" onclick="showTab('tab-about', this)">About me</div>
             <div class="nav-item" onclick="showTab('tab-invitation', this)">Thiệp mời</div>
             <div class="nav-item" onclick="showTab('tab-gallery', this)">Hình ảnh</div>
             <div class="nav-item" onclick="showTab('tab-guestbook', this)">Lưu bút</div>
@@ -390,6 +468,28 @@ label,
             <p style="text-align: right; font-style: italic; color: var(--palette-navy); font-weight: 600;"> Lưu Minh Khôi </p>
         </div>
     </div>
+    <div id="tab-about" class="tab-content" style="display:none;">
+    <div class="about-card">
+        <div class="about-image">
+            <img src="anh_cua_ban.jpg" alt="Lưu Minh Khôi"> </div>
+        <div class="about-info">
+            <h2>LƯU MINH KHÔI</h2>
+            <p><strong>BOD:</strong> 16/11/2008</p>
+            <p><strong>Email:</strong> <a href="mailto:luuminhkhoiworking@gmail.com">luuminhkhoiworking@gmail.com</a></p>
+            <p><strong>Sex:</strong> Male | <strong>Religion:</strong> Catholic</p>
+            <p><strong>Motto:</strong> <em>"Longe Dominus apparuit mihi. Et in caritate perpetua ideo attrerans." (-Jeremias 31,3-)</em></p>
+            
+            <h3 style="margin-top:25px; color:#B88E2F;">Professional Experience:</h3>
+            <ul class="experience-list">
+                <li>Professor of Vocal Music – Stella Maris Major Seminary (2023 – 2025)</li>
+                <li>Photographer of LMC – Le Quy Don MecMedia Club (2023 – 2025)</li>
+                <li>Mentor of ViSef 2025</li>
+                <li>Head of Collaborator of Technology & Cathedral (2025)</li>
+                <li>Member of Logistics Department – We Know We Share (2023 - 2044)</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
     <div class="content-section" id="tab-invitation">
         <div class="invitation-card">
@@ -692,6 +792,7 @@ label,
 </body>
 </html>
 </html>
+
 
 
 
