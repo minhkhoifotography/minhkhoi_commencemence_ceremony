@@ -238,7 +238,7 @@
         }
         .action-name { font-size: 0.95rem; font-weight: 600; color: #1a365d; text-align: center; text-transform: uppercase; }
 
-        /* --- [NEW] EVENT UPGRADE STYLES --- */
+        /* --- EVENT UPGRADE: COUNTDOWN & CALENDAR --- */
         .countdown-container {
             display: flex;
             justify-content: center;
@@ -271,7 +271,6 @@
             margin-top: 5px;
             font-family: 'Inter', sans-serif;
         }
-
         .calendar-actions {
             display: flex;
             justify-content: center;
@@ -296,6 +295,26 @@
         .cal-btn.apple { background: #333; color: #fff; border-color: #333; }
         .cal-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
+        /* --- VISUAL UPGRADE: TIMELINE & BADGES & GALLERY PREVIEW --- */
+        .timeline { position: relative; border-left: 3px solid #e6e6e6; margin-left: 10px; padding-left: 35px; margin-top: 30px; }
+        .timeline-item { position: relative; margin-bottom: 35px; }
+        .timeline-dot { position: absolute; left: -44px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background: #D4AF37; border: 4px solid #fff; box-shadow: 0 0 0 2px #D4AF37; }
+        .timeline-date { font-family: 'Courier Prime', monospace; font-size: 0.85rem; color: #D4AF37; margin-bottom: 4px; font-weight: bold; letter-spacing: 1px; }
+        .timeline-title { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--palette-navy); margin: 0; font-weight: 800; line-height: 1.3; }
+        .timeline-place { font-family: 'Lora', serif; font-style: italic; color: #555; margin: 3px 0 0 0; font-size: 0.95rem; }
+
+        .hobby-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .hobby-tag { background: #f0f4f8; color: var(--palette-navy); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; font-family: 'Inter', sans-serif; border: 1px solid #dae1e7; transition: all 0.2s; }
+        .hobby-tag:hover { background: var(--palette-navy); color: #fff; transform: translateY(-2px); }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; margin-bottom: 20px; }
+        .info-item { margin-bottom: 5px; }
+        
+        .featured-title { text-align: center; font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--palette-navy); margin-bottom: 20px; }
+        .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px; }
+        .featured-item { border-radius: 12px; overflow: hidden; height: 250px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .featured-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .featured-item:hover img { transform: scale(1.1); }
 
         /* --- MOBILE RESPONSIVE --- */
         @media screen and (max-width: 768px) {
@@ -309,6 +328,7 @@
             .details-container { flex-direction: column; gap: 20px; }
             .detail-col.center { border: none; border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 15px 0; width: 100%; }
             .lang-toggle-btn { width: 55px; height: 55px; font-size: 0.9rem; bottom: 20px; right: 20px; }
+            .info-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -408,52 +428,103 @@
     
     <div class="content-section" id="tab-about">
         <div class="about-card">
-        <div class="about-image">
-            <img src="Pio.jpg" alt="Lưu Minh Khôi"> 
-        </div>
-        <div class="about-info">
-            <h2>LƯU MINH KHÔI</h2>
-            <p><strong>BOD:</strong> 16/11/2008</p>
-            <p><strong>Hobbies:</strong> Photography, Videography, Content Creator, Diplomatic</p>
-            <p><strong>Phone:</strong> (+84) 833 204 240</p>
-            <p><strong>Email:</strong> <a href="mailto:luuminhkhoiworking@gmail.com">luuminhkhoiworking@gmail.com</a></p>
-            <p><strong>Facebook:</strong> <a href="https://www.facebook.com/minhkhoifoto.41">Minh Khôi</a></p>
-            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/minhkhoifoto.41/">minhkhoifoto.41</a></p>
-            <p><strong>Locket:</strong> <a href="https://locket.cam/minhkhoifoto">Printf (minhkhoifoto)</a></p>
-            <p><strong>Sex:</strong> Male</p> 
-            <p><strong>Religion:</strong> Catholic | <strong>Christian name: </strong> Michaël – Pius</p>
-            <p><strong>Academic Position:</strong> Professor of Vocal Music</p>
-            <p><strong>Motto:</strong> <em>"Longe Dominus apparuit mihi. Et in caritate perpetua ideo attrerans." (-Jeremias 31:3-)</em></p>
+            <div class="about-image">
+                <img src="Pio.jpg" alt="Lưu Minh Khôi">
+                <p style="text-align: center; font-family: 'Great Vibes', cursive; font-size: 1.5rem; margin-top: 15px; color: #B88E2F;">
+                    Carpe Diem
+                </p>
+            </div>
             
-            <h2 style="margin-top:25px; color:#B88E2F;">
-                <span class="lang-vi">Professional Experience:</span>
-                <span class="lang-en">Professional Experience:</span>
-                <span class="lang-la">Experientia Professionalis:</span>
-            </h2>
-            <ul class="experience-list">
-                <li>Professor of Vocal Music – Stella Maris Major Seminary (2017 - 2022)</li>
-                <li>Foreign affairs officer – Conferentia Episcoporum Vietnamie (2025 - now)</li>
-                <li>Photographer of LMC – Le Quy Don Media Club (2023 – 2025)</li>
-                <li>Mentor of ViSef 2025</li>
-                <li>Proffessor of Theology – Nha Trang Cathedral (2025 – now)</li>
-                <li>Vice Proffessor of Theology – Phuoc Hoa Patrish (2024 – 2025)</li>
-                <li>Head of Collabrator of Technology & Control Issues Management - MSOCE (2024)</li>
-                <li>Member of Logistics Department – We Know We Share (2023 - 2024)</li>
-            </ul>
+            <div class="about-info">
+                <h2>LƯU MINH KHÔI</h2>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <p><strong>BOD:</strong> 16/11/2008</p>
+                        <p><strong>Phone:</strong> (+84) 833 204 240</p>
+                        <p><strong>Religion:</strong> Catholic (Michaël – Pius)</p>
+                    </div>
+                    <div class="info-item">
+                        <p><strong>Sex:</strong> Male</p>
+                        <p><strong>Email:</strong> luuminhkhoiworking@...</p>
+                        <p><strong>Position:</strong> Prof. of Vocal Music</p>
+                    </div>
+                </div>
 
-            <h2 style="margin-top:25px; color:#B88E2F;">
-                <span class="lang-vi">Awards:</span>
-                <span class="lang-en">Awards:</span>
-                <span class="lang-la">Praemia:</span>
-            </h2>
-            <ul class="experience-list">
-                <li>Second Prize of Le Quy Don Science and Engineering Fair 2024 - 2025</li>
-                <li>First Prize of Le Quy Don Science and Engineering Fair 2025 - 2026</li>
-                <li>Third Prize of Khanh Hoa Science and Engineering Fair 2024 - 2025</li>
-                <li>Papal Leo XIV's award and blessing for dedication to the mission of proclaiming the Gospel 2025 </li>
-            </ul>
+                <p><strong>Socials:</strong> 
+                    <a href="https://www.facebook.com/minhkhoifoto.41" style="margin-right:10px"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/minhkhoifoto.41/" style="margin-right:10px"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://locket.cam/minhkhoifoto"><i class="fa-solid fa-heart"></i></a>
+                </p>
+
+                <p><strong>Hobbies:</strong></p>
+                <div class="hobby-container">
+                    <span class="hobby-tag">📷 Photography</span>
+                    <span class="hobby-tag">🎥 Videography</span>
+                    <span class="hobby-tag">✍️ Content Creator</span>
+                    <span class="hobby-tag">🤝 Diplomatic</span>
+                    <span class="hobby-tag">🎼 Vocal Music</span>
+                    <span class="hobby-tag">✝️ Theology</span>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>Motto:</strong> <em>"Longe Dominus apparuit mihi. Et in caritate perpetua ideo attrerans." (-Jeremias 31:3-)</em></p>
+                
+                <h2 style="margin-top:35px; color:#B88E2F; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <span class="lang-vi">Hành trình & Kinh nghiệm</span>
+                    <span class="lang-en">Journey & Experience</span>
+                    <span class="lang-la">Iter & Experientia</span>
+                </h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2025 - Present</div>
+                        <h4 class="timeline-title">Foreign Affairs Officer</h4>
+                        <p class="timeline-place">Conferentia Episcoporum Vietnamie</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2025 - Present</div>
+                        <h4 class="timeline-title">Professor of Theology</h4>
+                        <p class="timeline-place">Nha Trang Cathedral</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2023 - 2025</div>
+                        <h4 class="timeline-title">Photographer of LMC</h4>
+                        <p class="timeline-place">Le Quy Don Media Club</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2024</div>
+                        <h4 class="timeline-title">Head of Collabrator (Tech & Control)</h4>
+                        <p class="timeline-place">MSOCE Management</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2017 - 2022</div>
+                        <h4 class="timeline-title">Professor of Vocal Music</h4>
+                        <p class="timeline-place">Stella Maris Major Seminary</p>
+                    </div>
+                </div>
+
+                 <h2 style="margin-top:35px; color:#B88E2F; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <span class="lang-vi">Thành tích nổi bật</span>
+                    <span class="lang-en">Honors & Awards</span>
+                    <span class="lang-la">Honores et Praemia</span>
+                </h2>
+                <ul class="experience-list" style="list-style-type: '🏆 '; padding-left: 20px;">
+                    <li><strong>1st Prize:</strong> Le Quy Don Science and Engineering Fair 2025-2026</li>
+                    <li><strong>2nd Prize:</strong> Le Quy Don Science and Engineering Fair 2024-2025</li>
+                    <li><strong>3rd Prize:</strong> Khanh Hoa Science and Engineering Fair 2024-2025</li>
+                    <li><strong>Papal Leo XIV's Blessing:</strong> Dedication to proclaiming the Gospel (2025)</li>
+                </ul>
+            </div>
         </div>
-    </div>
     </div>
 
     <div class="content-section" id="tab-invitation">
@@ -499,7 +570,7 @@
                         <span class="lang-en">Le Quy Don High School for the Gifted</span>
                         <span class="lang-la">Schola Superior Le Quy Donum</span>
                         <br>
-                        2-3 Nguyen Tat Thanh Str  <br>
+                        2-3 Nguyen Tat Thanh Str<br>
                         South Nha Trang, Khanh Hoa
                     </div>
                 </div>
@@ -661,6 +732,24 @@
     </div>
 
     <div class="content-section" id="tab-gallery">
+        <h2 class="featured-title">
+            <span class="lang-vi">Khoảnh khắc đáng nhớ</span>
+            <span class="lang-en">Memorable Moments</span>
+            <span class="lang-la">Momenta Memorabilia</span>
+        </h2>
+        
+        <div class="featured-grid">
+            <div class="featured-item">
+                <img src="Pio.jpg" alt="Moment 1">
+            </div>
+            <div class="featured-item">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop" alt="Graduation Cap">
+            </div>
+            <div class="featured-item">
+                <img src="https://images.unsplash.com/photo-1604882737321-e6937ee9f8e8?q=80&w=600&auto=format&fit=crop" alt="School">
+            </div>
+        </div>
+
         <div style="margin-bottom: 25px;">
             <input type="text" id="gallerySearch" class="input-field dynamic-placeholder" 
                    data-ph-vi="🔍 Tìm kiếm thư mục hình ảnh..." 
@@ -915,7 +1004,7 @@
             document.getElementById('guestbook-thank-you').style.display = 'block';
         });
 
-        // --- [NEW] EVENT COUNTDOWN LOGIC ---
+        // --- EVENT COUNTDOWN LOGIC ---
         // Thiết lập ngày giờ sự kiện: 01/02/2026 08:30:00
         const eventDate = new Date("Feb 1, 2026 08:30:00").getTime();
 
@@ -940,7 +1029,7 @@
             document.getElementById("cd-seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }, 1000);
 
-        // --- [NEW] CALENDAR DOWNLOAD LOGIC (.ICS) ---
+        // --- CALENDAR DOWNLOAD LOGIC (.ICS) ---
         function downloadICS() {
             const icsContent = 
 `BEGIN:VCALENDAR
@@ -982,4 +1071,3 @@ END:VCALENDAR`;
     </script>
 </body>
 </html>
-
