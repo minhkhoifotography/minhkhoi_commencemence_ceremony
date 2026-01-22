@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MinhKhoi's Commencement Ceremony</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Lora:wght@500;600&family=EB+Garamond:ital,wght@1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Courier+Prime&family=Great+Vibes&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         /* --- CORE VARIABLES --- */
         :root {
@@ -29,130 +33,87 @@
         body.lang-en .lang-vi, body.lang-en .lang-la { display: none !important; }
         body.lang-la .lang-vi, body.lang-la .lang-en { display: none !important; }
 
-        /* Floating Language Button Styles */
+        /* Floating Language Button Styles (Bottom Right) */
         .lang-toggle-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
-            background: var(--palette-navy);
-            color: #D4AF37;
-            border: 2px solid #D4AF37;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 9999;
+            position: fixed; bottom: 30px; right: 30px;
+            width: 65px; height: 65px;
+            background: var(--palette-navy); color: #D4AF37;
+            border: 2px solid #D4AF37; border-radius: 50%;
+            cursor: pointer; z-index: 9999;
             box-shadow: 0 4px 15px rgba(15, 26, 48, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-            font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.1rem;
             transition: all 0.3s ease;
         }
-        .lang-toggle-btn:hover {
-            transform: scale(1.1) rotate(10deg);
-            background: #D4AF37;
-            color: var(--palette-navy);
+        .lang-toggle-btn:hover { transform: scale(1.1) rotate(10deg); background: #D4AF37; color: var(--palette-navy); }
+
+        /* [EMOTION PACKAGE] MUSIC BUTTON (Bottom Left) */
+        .music-btn {
+            position: fixed; bottom: 30px; left: 30px;
+            width: 60px; height: 60px;
+            background: #fff; border: 2px solid #D4AF37;
+            border-radius: 50%; cursor: pointer; z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.5s;
         }
+        .music-icon { font-size: 24px; color: var(--palette-navy); }
+        .music-btn.playing { animation: spin 4s linear infinite; border-color: var(--palette-navy); }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* --- GLOBAL STYLES --- */
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-main);
             color: var(--text-main);
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            margin: 0; padding: 20px; line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
         }
 
         /* --- TASKBAR & HEADER --- */
         .taskbar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
             background-color: #ffffff;
-            border-radius: 0; 
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
             border-bottom: 3px solid #D4AF37;
             padding: 30px 20px 15px 20px;
-            max-width: 100%;
-            margin: 0 0 40px 0;
-            position: relative;
-            z-index: 1000;
+            max-width: 100%; margin: 0 0 40px 0;
+            position: relative; z-index: 1000;
         }
 
-        .brand-section { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 10px; 
-            cursor: pointer; 
-            margin-bottom: 25px; 
-        }
-
-        .logo-circle {
-            font-size: 48px; 
-            color: #D4AF37;
-        }
-
+        .brand-section { display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 25px; }
+        .logo-circle { font-size: 48px; color: #D4AF37; }
         .brand-section:hover { opacity: 0.8; }
-
         .title-group { text-align: center; }
 
         .title-group h1 {
-            font-family: 'Cinzel', serif !important;
-            font-size: 2rem !important;
-            font-weight: 800;
-            color: #0F1A30;
-            letter-spacing: 2px; 
-            margin: 10px 0 !important;
-            text-transform: uppercase;
-            line-height: 1.2;
+            font-family: 'Cinzel', serif !important; font-size: 2rem !important;
+            font-weight: 800; color: #0F1A30; letter-spacing: 2px; 
+            margin: 10px 0 !important; text-transform: uppercase; line-height: 1.2;
         }
 
         .main-idea {
-            font-family: 'Lora', serif !important;
-            font-size: 1.1rem !important;
-            font-weight: 600;
-            color: #B88E2F; 
-            margin: 5px 0 !important;
-            letter-spacing: 0.5px;
-            display: block;
+            font-family: 'Lora', serif !important; font-size: 1.1rem !important;
+            font-weight: 600; color: #B88E2F; margin: 5px 0 !important;
+            letter-spacing: 0.5px; display: block;
         }
 
         .bible-slogan {
-            font-family: 'EB Garamond', serif !important;
-            font-size: 1.2rem !important; 
-            font-style: italic;
-            margin: 15px 0 10px 0 !important;
-            color: #475569;
-            max-width: 800px;
+            font-family: 'EB Garamond', serif !important; font-size: 1.2rem !important; 
+            font-style: italic; margin: 15px 0 10px 0 !important;
+            color: #475569; max-width: 800px;
         }
 
         .nav-links { 
-            display: flex; 
-            gap: 30px; 
-            flex-wrap: wrap; 
-            justify-content: center;
-            border-top: 1px solid #eee; 
-            padding-top: 20px;
-            width: 90%;
+            display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;
+            border-top: 1px solid #eee; padding-top: 20px; width: 90%;
         }
 
         .nav-item {
-            cursor: pointer;
-            color: #555;
-            padding: 5px 0; 
-            font-size: 0.9rem;
-            font-family: 'Playfair Display', serif; 
-            font-weight: 600; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            transition: all 0.3s ease;
+            cursor: pointer; color: #555; padding: 5px 0; 
+            font-size: 0.9rem; font-family: 'Playfair Display', serif; 
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            position: relative; transition: all 0.3s ease;
         }
 
         .nav-item:hover, .nav-item.active { color: #D4AF37; }
@@ -163,9 +124,8 @@
 
         /* --- CONTENT SECTIONS --- */
         .content-section { max-width: 1000px; margin: 0 auto; display: none; }
-        .content-section.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+        .content-section.active { display: block; } /* Animation handled by AOS now */
+        
         /* --- ABOUT CARD --- */
         .about-card {
             display: flex; gap: 30px; background: white; padding: 40px;
@@ -240,56 +200,22 @@
 
         /* --- EVENT UPGRADE: COUNTDOWN & CALENDAR --- */
         .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap;
         }
         .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: var(--palette-navy);
-            color: #D4AF37;
-            padding: 15px;
-            border-radius: 8px;
-            min-width: 70px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border: 1px solid #D4AF37;
+            display: flex; flex-direction: column; align-items: center;
+            background: var(--palette-navy); color: #D4AF37;
+            padding: 15px; border-radius: 8px; min-width: 70px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #D4AF37;
         }
-        .countdown-number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            font-family: 'Cinzel', serif;
-            line-height: 1.2;
-        }
-        .countdown-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-            font-family: 'Inter', sans-serif;
-        }
-        .calendar-actions {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
+        .countdown-number { font-size: 1.8rem; font-weight: 800; font-family: 'Cinzel', serif; line-height: 1.2; }
+        .countdown-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; font-family: 'Inter', sans-serif; }
+        .calendar-actions { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
         .cal-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            border: 1px solid #ddd;
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
+            border-radius: 30px; text-decoration: none; font-weight: 600;
+            font-size: 0.9rem; transition: all 0.3s ease; cursor: pointer;
+            font-family: 'Inter', sans-serif; border: 1px solid #ddd;
         }
         .cal-btn.google { background: #fff; color: #4285F4; border-color: #4285F4; }
         .cal-btn.apple { background: #333; color: #fff; border-color: #333; }
@@ -328,17 +254,27 @@
             .details-container { flex-direction: column; gap: 20px; }
             .detail-col.center { border: none; border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 15px 0; width: 100%; }
             .lang-toggle-btn { width: 55px; height: 55px; font-size: 0.9rem; bottom: 20px; right: 20px; }
+            .music-btn { width: 50px; height: 50px; bottom: 20px; left: 20px; }
             .info-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body class="lang-vi"> <button class="lang-toggle-btn" onclick="toggleLanguage()">
+<body class="lang-vi"> 
+    <button class="lang-toggle-btn" onclick="toggleLanguage()">
         <span class="lang-vi">VN</span>
         <span class="lang-en">EN</span>
         <span class="lang-la">LA</span>
     </button>
 
-    <nav class="taskbar">
+    <audio id="bg-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-memories.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="music-btn" onclick="toggleMusic()">
+        <i class="fa-solid fa-music music-icon" id="music-icon"></i>
+    </div>
+
+    <nav class="taskbar" data-aos="fade-down" data-aos-duration="1000">
        <div class="brand-section" onclick="goHome()">
             <div class="logo-circle">🎓</div>
             <div class="title-group">
@@ -398,7 +334,7 @@
     </nav>
 
     <div class="content-section active" id="tab-intro">
-        <div style="background: var(--card-bg); border-left: 4px solid var(--palette-navy); padding: 35px 40px; border-radius: 0 20px 20px 0; box-shadow: 0 4px 15px rgba(30,44,72,0.05);">
+        <div style="background: var(--card-bg); border-left: 4px solid var(--palette-navy); padding: 35px 40px; border-radius: 0 20px 20px 0; box-shadow: 0 4px 15px rgba(30,44,72,0.05);" data-aos="fade-right" data-aos-duration="1000">
             <h2 style="color:var(--palette-navy); margin-top:0; font-family: 'Playfair Display', serif; font-style: italic;">
                 <span class="lang-vi">Tri ân những mảnh ghép thanh xuân...</span>
                 <span class="lang-en">Gratitude to the pieces of my youth...</span>
@@ -427,7 +363,7 @@
     </div>
     
     <div class="content-section" id="tab-about">
-        <div class="about-card">
+        <div class="about-card" data-aos="fade-up">
             <div class="about-image">
                 <img src="Pio.jpg" alt="Lưu Minh Khôi">
                 <p style="text-align: center; font-family: 'Great Vibes', cursive; font-size: 1.5rem; margin-top: 15px; color: #B88E2F;">
@@ -446,7 +382,7 @@
                     </div>
                     <div class="info-item">
                         <p><strong>Sex:</strong> Male</p>
-                        <p><strong>Email:</strong> luuminhkhoiworking@gmail.com</p>
+                        <p><strong>Email:</strong> luuminhkhoiworking@...</p>
                         <p><strong>Position:</strong> Prof. of Vocal Music</p>
                     </div>
                 </div>
@@ -482,49 +418,42 @@
                         <h4 class="timeline-title">Foreign Affairs Officer</h4>
                         <p class="timeline-place">Conferentia Episcoporum Vietnamie</p>
                     </div>
-                    
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2025 - Present</div>
                         <h4 class="timeline-title">Professor of Theology</h4>
                         <p class="timeline-place">Nha Trang Cathedral</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2025 </div>
                         <h4 class="timeline-title">Mentor</h4>
                         <p class="timeline-place">Le Quy Don Science and Engineering Fair</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2024 - 2025</div>
                         <h4 class="timeline-title">Vice Proffessor of Theology</h4>
                         <p class="timeline-place">Phuoc Hoa Patrish</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2023 - 2025</div>
                         <h4 class="timeline-title">Photographer of LMC</h4>
                         <p class="timeline-place">Le Quy Don Media Club</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2024</div>
                         <h4 class="timeline-title">Head of Collabrator (Tech & Control)</h4>
                         <p class="timeline-place">MSOCE Management</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2023 - 2024</div>
                         <h4 class="timeline-title">Member of Logistics Department</h4>
                         <p class="timeline-place">We Know We Share 2024</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2017 - 2022</div>
@@ -549,7 +478,7 @@
     </div>
 
     <div class="content-section" id="tab-invitation">
-        <div class="invitation-card">
+        <div class="invitation-card" data-aos="zoom-in" data-aos-duration="1000">
             <div class="curved-text-container">
                 <svg viewBox="0 0 500 150" width="100%" height="100%">
                     <path id="curve" d="M 75, 120 A 200, 200 0 0,1 425, 120" fill="transparent"/>
@@ -660,7 +589,7 @@
             </div>
         </div>
         
-        <div class="map-container">
+        <div class="map-container" data-aos="fade-up" data-aos-delay="200">
            <iframe src="https://maps.google.com/maps?q=Le+Quy+Don+High+School+for+the+Gifted+Nha+Trang&t=&z=13&ie=UTF8&iwloc=&output=embed" 
                width="600" height="450" style="border:0;" 
                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -677,7 +606,7 @@
             </div>
         </div>
 
-        <div class="form-card">
+        <div class="form-card" data-aos="fade-up" data-aos-delay="300">
             <div id="rsvp-form-container">
                 <h3 style="text-align: center; margin-bottom: 25px;">
                     <span class="lang-vi">Xác nhận tham gia</span>
@@ -753,13 +682,13 @@
     </div>
 
     <div class="content-section" id="tab-gallery">
-        <h2 class="featured-title">
+        <h2 class="featured-title" data-aos="fade-down">
             <span class="lang-vi">Khoảnh khắc đáng nhớ</span>
             <span class="lang-en">Memorable Moments</span>
             <span class="lang-la">Momenta Memorabilia</span>
         </h2>
         
-        <div class="featured-grid">
+        <div class="featured-grid" data-aos="fade-up">
             <div class="featured-item">
                 <img src="Pio.jpg" alt="Moment 1">
             </div>
@@ -783,7 +712,7 @@
     </div>
 
     <div class="content-section" id="tab-guestbook">
-        <div style="text-align: center; background: var(--card-bg); max-width: 500px; margin: 0 auto 20px auto; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <div style="text-align: center; background: var(--card-bg); max-width: 500px; margin: 0 auto 20px auto; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);" data-aos="fade-up">
             <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--palette-navy); font-weight: 600;">
                 <span class="lang-vi">🎁 Bạn có muốn gửi quà đến LMK không ^^</span>
                 <span class="lang-en">🎁 Would you like to send a gift to LMK? ^^</span>
@@ -799,7 +728,7 @@
             </p>
         </div>
         
-        <div class="form-card">
+        <div class="form-card" data-aos="fade-up" data-aos-delay="200">
             <div id="guestbook-form-container">
                 <h3 style="text-align: center; margin-bottom: 25px;">
                     <span class="lang-vi">Gửi lời nhắn kỷ niệm</span>
@@ -869,7 +798,29 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // --- INITIALIZE ANIMATIONS & MUSIC ---
+        AOS.init();
+
+        const bgMusic = document.getElementById("bg-music");
+        const musicIcon = document.getElementById("music-icon");
+        const musicBtn = document.querySelector(".music-btn");
+
+        function toggleMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicIcon.classList.remove("fa-music");
+                musicIcon.classList.add("fa-pause");
+                musicBtn.classList.add("playing");
+            } else {
+                bgMusic.pause();
+                musicIcon.classList.remove("fa-pause");
+                musicIcon.classList.add("fa-music");
+                musicBtn.classList.remove("playing");
+            }
+        }
+
         // --- DỮ LIỆU GALLERY ---
         const photoFolders = [
             {
@@ -882,36 +833,25 @@
             }
         ];
 
-        // --- HÀM TOGGLE NGÔN NGỮ (3 Languages) ---
+        // --- HÀM TOGGLE NGÔN NGỮ ---
         const langOrder = ['lang-vi', 'lang-en', 'lang-la'];
         
         function toggleLanguage() {
             const body = document.body;
             const inputs = document.querySelectorAll('.dynamic-placeholder');
-            
-            // Tìm ngôn ngữ hiện tại
             let currentLang = 'lang-vi';
             if (body.classList.contains('lang-en')) currentLang = 'lang-en';
             if (body.classList.contains('lang-la')) currentLang = 'lang-la';
-            
-            // Xác định ngôn ngữ tiếp theo
             const currentIndex = langOrder.indexOf(currentLang);
             const nextIndex = (currentIndex + 1) % langOrder.length;
             const nextLang = langOrder[nextIndex];
-            
-            // Thay class body
             body.classList.remove(currentLang);
             body.classList.add(nextLang);
-            
-            // Cập nhật placeholders
             inputs.forEach(input => {
-                const suffix = nextLang.split('-')[1]; // vi, en, la
+                const suffix = nextLang.split('-')[1];
                 const newPlaceholder = input.getAttribute(`data-ph-${suffix}`);
-                if (newPlaceholder) {
-                    input.placeholder = newPlaceholder;
-                }
+                if (newPlaceholder) input.placeholder = newPlaceholder;
             });
-            
             filterGallery();
         }
 
@@ -920,45 +860,28 @@
             const container = document.getElementById('gallery-container');
             container.innerHTML = `<div class="action-grid" id="action-grid"></div>`;
             const grid = document.getElementById('action-grid');
-            
-            const isVi = document.body.classList.contains('lang-vi');
             const isEn = document.body.classList.contains('lang-en');
             const isLa = document.body.classList.contains('lang-la');
-
-            const filteredFolders = photoFolders.filter(folder => 
-                folder.name.toLowerCase().includes(filter.toLowerCase())
-            );
+            const filteredFolders = photoFolders.filter(folder => folder.name.toLowerCase().includes(filter.toLowerCase()));
 
             if (filteredFolders.length === 0) {
                 let msg = "Không tìm thấy thư mục nào phù hợp...";
                 if (isEn) msg = "No folders found...";
                 if (isLa) msg = "Nulla folder inveni...";
-                
                 grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #94a3b8; padding: 40px;">${msg}</p>`;
                 return;
             }
-
             filteredFolders.forEach(folder => {
                 const actionButtonHtml = `
-                    <a href="${folder.downloadUrl}" target="_blank" class="action-container">
-                        <div class="action-icon-box">
-                            <i class="fa-solid fa-graduation-cap"></i> 
-                        </div>
+                    <a href="${folder.downloadUrl}" target="_blank" class="action-container" data-aos="zoom-in">
+                        <div class="action-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
                         <span class="action-name">${folder.name}</span>
-                    </a>
-                `;
+                    </a>`;
                 grid.innerHTML += actionButtonHtml;
             });
         }
-
-        // --- SỰ KIỆN SEARCH ---
-        document.getElementById('gallerySearch').addEventListener('keyup', function(e) {
-            renderGallery(e.target.value);
-        });
-        function filterGallery() {
-            const term = document.getElementById('gallerySearch').value;
-            renderGallery(term);
-        }
+        document.getElementById('gallerySearch').addEventListener('keyup', function(e) { renderGallery(e.target.value); });
+        function filterGallery() { renderGallery(document.getElementById('gallerySearch').value); }
 
         // --- NAVIGATION LOGIC ---
         function showTab(tabId, element) {
@@ -966,6 +889,8 @@
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
+            // Refresh AOS when switching tabs to re-trigger animations
+            setTimeout(() => { AOS.refresh(); }, 100);
             if(tabId === 'tab-gallery') renderGallery();
         }
 
@@ -975,26 +900,17 @@
             document.getElementById('tab-intro').classList.add('active');
             const homeBtn = document.querySelector('.nav-links .nav-item:first-child');
             if(homeBtn) homeBtn.classList.add('active');
+            setTimeout(() => { AOS.refresh(); }, 100);
         }
         
-        // --- FORM LOGIC & LOCAL STORAGE ---
-        let rsvpData = [];
-        let guestbookData = [];
-
+        // --- FORM LOGIC ---
+        let rsvpData = [], guestbookData = [];
         window.addEventListener('load', () => {
             renderGallery();
-            
             const savedRSVP = localStorage.getItem('minhkhoi_rsvp_storage');
             const savedGB = localStorage.getItem('minhkhoi_gb_storage');
-            
-            if (savedRSVP) {
-                const parsedRSVP = JSON.parse(savedRSVP);
-                parsedRSVP.forEach(item => rsvpData.push(item));
-            }
-            if (savedGB) {
-                const parsedGB = JSON.parse(savedGB);
-                parsedGB.forEach(item => guestbookData.push(item));
-            }
+            if (savedRSVP) JSON.parse(savedRSVP).forEach(item => rsvpData.push(item));
+            if (savedGB) JSON.parse(savedGB).forEach(item => guestbookData.push(item));
         });
 
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
@@ -1007,7 +923,6 @@
             };
             rsvpData.push(newData);
             localStorage.setItem('minhkhoi_rsvp_storage', JSON.stringify(rsvpData));
-            
             document.getElementById('rsvp-form-container').style.display = 'none';
             document.getElementById('rsvp-thank-you').style.display = 'block';
         });
@@ -1020,54 +935,32 @@
             };
             guestbookData.push(newData);
             localStorage.setItem('minhkhoi_gb_storage', JSON.stringify(guestbookData));
-            
             document.getElementById('guestbook-form-container').style.display = 'none';
             document.getElementById('guestbook-thank-you').style.display = 'block';
         });
 
-        // --- EVENT COUNTDOWN LOGIC ---
-        // Thiết lập ngày giờ sự kiện: 01/02/2026 08:30:00
+        // --- COUNTDOWN & CALENDAR ---
         const eventDate = new Date("Feb 1, 2026 08:30:00").getTime();
-
         const countdownInterval = setInterval(function() {
             const now = new Date().getTime();
             const distance = eventDate - now;
-
             if (distance < 0) {
                 clearInterval(countdownInterval);
                 document.getElementById("countdown-box").innerHTML = "<h3 style='color:var(--palette-navy);'>HAPPENING NOW!</h3>";
                 return;
             }
-
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.getElementById("cd-days").innerText = days < 10 ? "0" + days : days;
             document.getElementById("cd-hours").innerText = hours < 10 ? "0" + hours : hours;
             document.getElementById("cd-minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("cd-seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }, 1000);
 
-        // --- CALENDAR DOWNLOAD LOGIC (.ICS) ---
         function downloadICS() {
-            const icsContent = 
-`BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//MinhKhoi Graduation//EN
-BEGIN:VEVENT
-UID:uid1@example.com
-DTSTAMP:20250118T000000Z
-ORGANIZER;CN=Minh Khoi:MAILTO:luuminhkhoiworking@gmail.com
-DTSTART:20260201T013000Z
-DTEND:20260201T043000Z
-SUMMARY:Minh Khoi's Graduation Photoshoot
-DESCRIPTION:The 1000-day journey of LuuMinhKhoi. Dresscode: Semi Formal.
-LOCATION:Le Quy Don High School for the Gifted, Nha Trang
-END:VEVENT
-END:VCALENDAR`;
-            
+            const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MinhKhoi Graduation//EN\nBEGIN:VEVENT\nUID:uid1@example.com\nDTSTAMP:20250118T000000Z\nORGANIZER;CN=Minh Khoi:MAILTO:luuminhkhoiworking@gmail.com\nDTSTART:20260201T013000Z\nDTEND:20260201T043000Z\nSUMMARY:Minh Khoi's Graduation Photoshoot\nDESCRIPTION:The 1000-day journey of LuuMinhKhoi. Dresscode: Semi Formal.\nLOCATION:Le Quy Don High School for the Gifted, Nha Trang\nEND:VEVENT\nEND:VCALENDAR`;
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
@@ -1082,7 +975,6 @@ END:VCALENDAR`;
             img.setAttribute('loading', 'lazy'); 
             img.setAttribute('decoding', 'async'); 
         });
-
         if ('addEventListener' in document) {
             document.addEventListener('DOMContentLoaded', function() {
                 const navItems = document.querySelectorAll('.nav-item');
@@ -1092,7 +984,3 @@ END:VCALENDAR`;
     </script>
 </body>
 </html>
-
-
-
-
