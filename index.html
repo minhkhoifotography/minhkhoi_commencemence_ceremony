@@ -24,13 +24,7 @@
             --text-sub:  #231f20;
         }
 
-        /* --- LANGUAGE TOGGLE LOGIC (3 LANGUAGES) --- */
-        /* Logic:
-           - body.lang-vi: Hiện .lang-vi, Ẩn .lang-en, .lang-la
-           - body.lang-en: Hiện .lang-en, Ẩn .lang-vi, .lang-la
-           - body.lang-la: Hiện .lang-la, Ẩn .lang-vi, .lang-en
-        */
-        
+        /* --- LANGUAGE TOGGLE LOGIC --- */
         body.lang-vi .lang-en, body.lang-vi .lang-la { display: none !important; }
         body.lang-en .lang-vi, body.lang-en .lang-la { display: none !important; }
         body.lang-la .lang-vi, body.lang-la .lang-en { display: none !important; }
@@ -244,6 +238,65 @@
         }
         .action-name { font-size: 0.95rem; font-weight: 600; color: #1a365d; text-align: center; text-transform: uppercase; }
 
+        /* --- [NEW] EVENT UPGRADE STYLES --- */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--palette-navy);
+            color: #D4AF37;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 70px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid #D4AF37;
+        }
+        .countdown-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Cinzel', serif;
+            line-height: 1.2;
+        }
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .calendar-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .cal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            border: 1px solid #ddd;
+        }
+        .cal-btn.google { background: #fff; color: #4285F4; border-color: #4285F4; }
+        .cal-btn.apple { background: #333; color: #fff; border-color: #333; }
+        .cal-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+
         /* --- MOBILE RESPONSIVE --- */
         @media screen and (max-width: 768px) {
             .taskbar { flex-direction: column; gap: 15px; padding: 15px; }
@@ -446,14 +499,50 @@
                         <span class="lang-en">Le Quy Don High School for the Gifted</span>
                         <span class="lang-la">Schola Superior Le Quy Donum</span>
                         <br>
-                        2-3 Nguyen Tat Thanh Str<br>
-                        South Nha Trang, Khanh Hoa
+                        Dai Lo Nguyen Tat Thanh<br>
+                        Nha Trang, Khanh Hoa
                     </div>
                 </div>
                 <div class="detail-col">
                     <span class="gold-label">8:30</span>
                     <span class="gold-number">AM</span>
                 </div>
+            </div>
+
+            <div class="countdown-container" id="countdown-box">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="cd-days">00</span>
+                    <span class="countdown-label">
+                        <span class="lang-vi">Ngày</span><span class="lang-en">Days</span><span class="lang-la">Dies</span>
+                    </span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="cd-hours">00</span>
+                    <span class="countdown-label">
+                        <span class="lang-vi">Giờ</span><span class="lang-en">Hrs</span><span class="lang-la">Horae</span>
+                    </span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="cd-minutes">00</span>
+                    <span class="countdown-label">
+                        <span class="lang-vi">Phút</span><span class="lang-en">Mins</span><span class="lang-la">Minutae</span>
+                    </span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="cd-seconds">00</span>
+                    <span class="countdown-label">
+                        <span class="lang-vi">Giây</span><span class="lang-en">Secs</span><span class="lang-la">Secundae</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="calendar-actions">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Minh+Khoi's+Graduation+Ceremony&dates=20260201T013000Z/20260201T043000Z&details=Minh+Khoi's+1000-day+Journey+Ceremony.+Dresscode:+Semi-Formal.&location=Le+Quy+Don+High+School+for+the+Gifted,+Nha+Trang" target="_blank" class="cal-btn google">
+                    <i class="fa-brands fa-google"></i> Google Calendar
+                </a>
+                <a href="javascript:downloadICS()" class="cal-btn apple">
+                    <i class="fa-brands fa-apple"></i> Apple/Outlook
+                </a>
             </div>
 
             <div class="dresscode-text">
@@ -480,12 +569,12 @@
         </div>
         
         <div class="map-container">
-           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7799.541062685454!2d109.17051362219846!3d12.196011119198419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31705e07aad63d29%3A0x836ec36384fbd178!2zVHLGsOG7nW5nIFRIUFQgQ2h1ecOqbiBMw6ogUXXDvSDEkMO0bg!5e0!3m2!1sen!2s!4v1768965591729!5m2!1sen!2s" 
+           <iframe src="https://maps.google.com/maps?q=Le+Quy+Don+High+School+for+the+Gifted+Nha+Trang&t=&z=13&ie=UTF8&iwloc=&output=embed" 
                width="600" height="450" style="border:0;" 
                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                </iframe>
             <div style="text-align: center; margin-top: 15px;">
-                <a href="https://maps.app.goo.gl/3m7Ck9MEMTQcXesq9" 
+                <a href="https://www.google.com/maps/search/?api=1&query=Le+Quy+Don+High+School+for+the+Gifted+Nha+Trang" 
                    target="_blank" 
                    style="display: inline-flex; align-items: center; gap: 10px; background-color: #0F1A30; color: #FFFFFF; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(15, 26, 48, 0.2);">
                     <i class="fa-solid fa-location-arrow"></i>
@@ -706,7 +795,6 @@
             
             // Cập nhật placeholders
             inputs.forEach(input => {
-                // Lấy data attribute tương ứng (data-ph-vi, data-ph-en, data-ph-la)
                 const suffix = nextLang.split('-')[1]; // vi, en, la
                 const newPlaceholder = input.getAttribute(`data-ph-${suffix}`);
                 if (newPlaceholder) {
@@ -714,7 +802,6 @@
                 }
             });
             
-            // Re-render gallery to update "No folders found" text
             filterGallery();
         }
 
@@ -828,6 +915,58 @@
             document.getElementById('guestbook-thank-you').style.display = 'block';
         });
 
+        // --- [NEW] EVENT COUNTDOWN LOGIC ---
+        // Thiết lập ngày giờ sự kiện: 01/02/2026 08:30:00
+        const eventDate = new Date("Feb 1, 2026 08:30:00").getTime();
+
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown-box").innerHTML = "<h3 style='color:var(--palette-navy);'>HAPPENING NOW!</h3>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("cd-days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("cd-hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("cd-minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("cd-seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+        // --- [NEW] CALENDAR DOWNLOAD LOGIC (.ICS) ---
+        function downloadICS() {
+            const icsContent = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//MinhKhoi Graduation//EN
+BEGIN:VEVENT
+UID:uid1@example.com
+DTSTAMP:20250118T000000Z
+ORGANIZER;CN=Minh Khoi:MAILTO:luuminhkhoiworking@gmail.com
+DTSTART:20260201T013000Z
+DTEND:20260201T043000Z
+SUMMARY:Minh Khoi's Graduation Photoshoot
+DESCRIPTION:The 1000-day journey of LuuMinhKhoi. Dresscode: Semi Formal.
+LOCATION:Le Quy Don High School for the Gifted, Nha Trang
+END:VEVENT
+END:VCALENDAR`;
+            
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'MinhKhoi_Graduation.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         // --- OPTIMIZATION ---
         document.querySelectorAll('img').forEach(img => {
             img.setAttribute('loading', 'lazy'); 
@@ -843,7 +982,3 @@
     </script>
 </body>
 </html>
-
-
-
-
