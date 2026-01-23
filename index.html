@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MinhKhoi's Commencement Ceremony</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Lora:wght@500;600&family=EB+Garamond:ital,wght@1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Courier+Prime&family=Great+Vibes&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -72,83 +73,77 @@
         body.dark-mode .theme-toggle-btn { background: var(--card-bg); color: var(--gold-text); border-color: var(--gold-text); }
         body.dark-mode .featured-title { color: var(--gold-text); }
 
+        /* --- [NEW] MAGICAL FIREFLIES EFFECT --- */
+        .firefly {
+            position: fixed; left: 50%; top: 50%;
+            width: 0.4vw; height: 0.4vw;
+            margin: -0.2vw 0 0 9.8vw;
+            animation: ease 200s alternate infinite;
+            pointer-events: none; z-index: 0; /* Nằm dưới nội dung */
+        }
+        .firefly::before, .firefly::after {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            border-radius: 50%; transform-origin: -10vw;
+        }
+        .firefly::before { background: var(--gold-text); opacity: 0.4; animation: drift ease alternate infinite; }
+        .firefly::after { background: white; opacity: 0; box-shadow: 0 0 0vw 0vw var(--gold-text); animation: drift ease alternate infinite, flash ease infinite; }
+        
+        @keyframes drift { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes flash { 0%, 30%, 100% { opacity: 0; box-shadow: 0 0 0vw 0vw var(--gold-text); } 5% { opacity: 1; box-shadow: 0 0 2vw 0.4vw var(--gold-text); } }
+
         /* --- [FIXED] RED CURTAIN WELCOME SCREEN --- */
         #welcome-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 99999; 
             display: flex; align-items: center; justify-content: center;
             overflow: hidden; pointer-events: all;
-            /* QUAN TRỌNG: Nền trong suốt để khi rèm mở thì thấy web bên dưới */
             background: transparent; 
         }
         
-        /* Hai cánh màn nhung ĐỎ */
         .curtain-panel {
             position: absolute; top: 0; height: 100%; width: 50%;
-            z-index: 1; 
-            transition: transform 2s cubic-bezier(0.77, 0, 0.175, 1);
-            box-sizing: border-box;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            z-index: 1; transition: transform 2s cubic-bezier(0.77, 0, 0.175, 1);
+            box-sizing: border-box; box-shadow: 0 0 50px rgba(0,0,0,0.8);
         }
-        
         .curtain-left { 
-            left: 0; 
-            transform-origin: left; 
-            border-right: 3px solid #FCD34D;
+            left: 0; transform-origin: left; border-right: 3px solid #FCD34D;
             background: linear-gradient(90deg, #2a0202 0%, #850b0b 40%, #b91c1c 95%, #850b0b 100%);
         } 
-        
         .curtain-right { 
-            right: 0; 
-            transform-origin: right; 
-            border-left: 3px solid #FCD34D;
+            right: 0; transform-origin: right; border-left: 3px solid #FCD34D;
             background: linear-gradient(-90deg, #2a0202 0%, #850b0b 40%, #b91c1c 95%, #850b0b 100%);
         }
 
-        /* Nội dung chào */
         .welcome-content { 
-            position: relative; z-index: 10; 
-            text-align: center; padding: 20px; 
-            transition: opacity 0.5s ease;
-            width: 100%;
+            position: relative; z-index: 10; text-align: center; padding: 20px; 
+            transition: opacity 0.5s ease; width: 100%;
         }
-
         .welcome-logo { 
             font-size: 80px; margin-bottom: 20px; display: block; 
-            animation: float 3s ease-in-out infinite; 
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
+            animation: float 3s ease-in-out infinite; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
         }
         .welcome-title { 
-            font-family: 'Cinzel', serif; font-size: 2.5rem; 
-            color: #FFFFFF;
+            font-family: 'Cinzel', serif; font-size: 2.5rem; color: #FFFFFF;
             margin-bottom: 10px; letter-spacing: 3px; text-transform: uppercase;
             text-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
         .welcome-subtitle {
-            font-family: 'Great Vibes', cursive; font-size: 2rem; 
-            color: #FCD34D;
-            margin-bottom: 40px; display: block;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            font-family: 'Great Vibes', cursive; font-size: 2rem; color: #FCD34D;
+            margin-bottom: 40px; display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
-
         .enter-btn {
-            background: rgba(0,0,0,0.4); 
-            color: #FFFFFF;
+            background: rgba(0,0,0,0.4); color: #FFFFFF;
             border: 2px solid #FCD34D; padding: 15px 50px;
             font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.1rem;
             cursor: pointer; transition: all 0.3s; letter-spacing: 3px;
             position: relative; overflow: hidden; text-transform: uppercase;
-            border-radius: 50px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-radius: 50px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);
         }
         .enter-btn:hover { 
-            background: #FCD34D; 
-            color: #4a0404; 
-            transform: scale(1.05); 
+            background: #FCD34D; color: #4a0404; transform: scale(1.05); 
             box-shadow: 0 0 30px rgba(252, 211, 77, 0.6);
         }
 
-        /* Khi mở màn */
         #welcome-overlay.open .curtain-left { transform: translateX(-100%); }
         #welcome-overlay.open .curtain-right { transform: translateX(100%); }
         #welcome-overlay.open .welcome-content { opacity: 0; pointer-events: none; }
@@ -163,14 +158,12 @@
             background: rgba(0, 0, 0, 0.95);
             display: flex; align-items: center; justify-content: center;
             opacity: 0; visibility: hidden; transition: all 0.3s ease;
-            cursor: zoom-out;
-            backdrop-filter: blur(5px);
+            cursor: zoom-out; backdrop-filter: blur(5px);
         }
         #lightbox.active { opacity: 1; visibility: visible; }
         #lightbox img {
             max-width: 90%; max-height: 90%;
-            border: 2px solid var(--gold-text);
-            border-radius: 4px;
+            border: 2px solid var(--gold-text); border-radius: 4px;
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
             transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
         }
@@ -178,8 +171,7 @@
         .lightbox-close {
             position: absolute; top: 20px; right: 30px;
             color: #fff; font-size: 40px; cursor: pointer;
-            transition: color 0.3s;
-            z-index: 100001;
+            transition: color 0.3s; z-index: 100001;
         }
         .lightbox-close:hover { color: var(--gold-text); }
         .featured-item img { cursor: zoom-in; }
@@ -187,20 +179,17 @@
         /* --- GLOBAL STYLES --- */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
+            background-color: var(--bg-main); color: var(--text-main);
             margin: 0; padding: 20px; line-height: 1.6;
             overflow-x: hidden;
             transition: background-color 0.5s, color 0.5s;
         }
 
-        /* Floating Buttons Container */
+        /* Floating Buttons */
         .floating-actions {
             position: fixed; bottom: 30px; right: 30px;
-            display: flex; flex-direction: column; gap: 15px;
-            z-index: 9990;
+            display: flex; flex-direction: column; gap: 15px; z-index: 9990;
         }
-
         .lang-toggle-btn, .theme-toggle-btn {
             width: 55px; height: 55px;
             background: var(--palette-navy); color: #D4AF37;
@@ -238,42 +227,35 @@
             position: relative; z-index: 1000;
             transition: background-color 0.5s;
         }
-
         .brand-section { display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 25px; }
         .logo-circle { font-size: 48px; color: #D4AF37; }
         .brand-section:hover { opacity: 0.8; }
         .title-group { text-align: center; }
-
         .title-group h1 {
             font-family: 'Cinzel', serif !important; font-size: 2rem !important;
             font-weight: 800; color: var(--palette-black);
             letter-spacing: 2px; margin: 10px 0 !important; text-transform: uppercase; line-height: 1.2;
         }
-
         .main-idea {
             font-family: 'Lora', serif !important; font-size: 1.1rem !important;
             font-weight: 600; color: var(--gold-text); margin: 5px 0 !important;
             letter-spacing: 0.5px; display: block;
         }
-
         .bible-slogan {
             font-family: 'EB Garamond', serif !important; font-size: 1.2rem !important; 
             font-style: italic; margin: 15px 0 10px 0 !important;
             color: var(--text-sub); max-width: 800px;
         }
-
         .nav-links { 
             display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;
             border-top: 1px solid var(--border-color); padding-top: 20px; width: 90%;
         }
-
         .nav-item {
             cursor: pointer; color: var(--text-sub); padding: 5px 0; 
             font-size: 0.9rem; font-family: 'Playfair Display', serif; 
             font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
             position: relative; transition: all 0.3s ease;
         }
-
         .nav-item:hover, .nav-item.active { color: #D4AF37; }
         .nav-item.active::after {
             content: ''; display: block; width: 100%; height: 2px;
@@ -393,7 +375,6 @@
         .info-item { margin-bottom: 5px; }
         
         .featured-title { text-align: center; font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--palette-navy); margin-bottom: 20px; transition: color 0.5s; }
-        
         .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px; }
         .featured-item { border-radius: 12px; overflow: hidden; height: 250px; position: relative; box-shadow: 0 4px 10px var(--shadow-color); }
         .featured-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
@@ -411,12 +392,9 @@
             .details-container { flex-direction: column; gap: 20px; }
             .detail-col.center { border: none; border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 15px 0; width: 100%; }
             .info-grid { grid-template-columns: 1fr; }
-            
             .welcome-logo { font-size: 60px; }
             .welcome-title { font-size: 1.5rem; }
             .welcome-subtitle { font-size: 1.3rem; }
-            
-            /* Floating buttons position on mobile */
             .floating-actions { bottom: 20px; right: 20px; }
             .music-btn { bottom: 20px; left: 20px; width: 50px; height: 50px; }
         }
@@ -448,6 +426,8 @@
         <span class="lightbox-close">×</span>
         <img id="lightbox-img" src="" alt="Fullsize Image">
     </div>
+
+    <div id="fireflies-container"></div>
 
     <div class="floating-actions">
         <button class="theme-toggle-btn" onclick="toggleTheme()" title="Switch Theme">
@@ -682,9 +662,9 @@
                     <path id="curve" d="M 75, 120 A 200, 200 0 0,1 425, 120" fill="transparent"/>
                     <text class="curved-text" width="500">
                         <textPath xlink:href="#curve" startOffset="50%" text-anchor="middle">
-                            <tspan class="lang-vi">The tassel was worth the hassle</tspan>
-                            <tspan class="lang-en">The tassel was worth the hassle</tspan>
-                            <tspan class="lang-la">Praemium labore dignum est</tspan>
+                            <tspan class="lang-vi typewriter-text" data-text="The tassel was worth the hassle">The tassel was worth the hassle</tspan>
+                            <tspan class="lang-en typewriter-text" data-text="The tassel was worth the hassle">The tassel was worth the hassle</tspan>
+                            <tspan class="lang-la typewriter-text" data-text="Praemium labore dignum est">Praemium labore dignum est</tspan>
                         </textPath>
                     </text>
                 </svg>
@@ -879,123 +859,6 @@
         </div>
     </div>
 
-    <div class="content-section" id="tab-gallery">
-        <h2 class="featured-title" data-aos="fade-down">
-            <span class="lang-vi">Khoảnh khắc đáng nhớ</span>
-            <span class="lang-en">Memorable Moments</span>
-            <span class="lang-la">Momenta Memorabilia</span>
-        </h2>
-        
-        <div class="featured-grid" data-aos="fade-up">
-            <div class="featured-item">
-                <img src="Pio.jpg" alt="Moment 1">
-            </div>
-            <div class="featured-item">
-                <img src="01.jpg" alt="Graduation Cap">
-            </div>
-            <div class="featured-item">
-                <img src="02.jpg" alt="School">
-            </div>
-        </div>
-
-        <div style="margin-bottom: 25px;">
-            <input type="text" id="gallerySearch" class="input-field dynamic-placeholder" 
-                   data-ph-vi="🔍 Tìm kiếm thư mục hình ảnh..." 
-                   data-ph-en="🔍 Search photo folders..."
-                   data-ph-la="🔍 Quaerere folder imaginum..."
-                   placeholder="🔍 Tìm kiếm thư mục hình ảnh..." 
-                   onkeyup="filterGallery()">
-        </div>
-        <div id="gallery-container"></div>
-    </div>
-
-    <div class="content-section" id="tab-guestbook">
-        <div style="text-align: center; background: var(--card-bg); max-width: 500px; margin: 0 auto 20px auto; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px var(--shadow-color);" data-aos="fade-up">
-            <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--palette-navy); font-weight: 600;">
-                <span class="lang-vi">🎁 Bạn có muốn gửi quà đến LMK không ^^</span>
-                <span class="lang-en">🎁 Would you like to send a gift to LMK? ^^</span>
-                <span class="lang-la">🎁 Visne donum mittere ad LMK? ^^</span>
-            </p>
-            
-            <img src="qr_image.jpg" alt="QR Code" style="width: 220px; border-radius: 12px; margin: 15px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-            
-            <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">
-                <span class="lang-vi">Ngân hàng:</span><span class="lang-en">Bank:</span><span class="lang-la">Argentaria:</span> <strong>Vietcombank</strong><br>
-                <span class="lang-vi">STK:</span><span class="lang-en">Account No:</span><span class="lang-la">Numerus Rationis:</span> <strong>1043092852</strong><br>
-                <span class="lang-vi">Tên:</span><span class="lang-en">Name:</span><span class="lang-la">Nomen:</span> <strong>LUU MINH KHOI</strong>
-            </p>
-        </div>
-        
-        <div class="form-card" data-aos="fade-up" data-aos-delay="200">
-            <div id="guestbook-form-container">
-                <h3 style="text-align: center; margin-bottom: 25px;">
-                    <span class="lang-vi">Gửi lời nhắn kỷ niệm</span>
-                    <span class="lang-en">Send a Commemorative Message</span>
-                    <span class="lang-la">Mitte Nuntium Commemorativum</span>
-                </h3>
-                <form action="https://formspree.io/f/mykkzvdd" method="POST" id="gb-form">
-                    <div class="form-group">
-                        <label>
-                            <span class="lang-vi">Tên của bạn</span>
-                            <span class="lang-en">Your Name</span>
-                            <span class="lang-la">Nomen Tuum</span>
-                        </label>
-                        <input type="text" name="guest_name" class="input-field dynamic-placeholder" 
-                               data-ph-vi="Cho mình xin quý danh của bạn nhế^^" 
-                               data-ph-en="May I have your name please^^"
-                               data-ph-la="Nomen tuum, quaeso^^"
-                               placeholder="Cho mình xin quý danh của bạn nhế^^" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            <span class="lang-vi">Thông tin liên lạc</span>
-                            <span class="lang-en">Contact Info</span>
-                            <span class="lang-la">Notitiae Contactus</span>
-                        </label>
-                        <input type="text" name="contact" class="input-field dynamic-placeholder" 
-                               data-ph-vi="Mình có thể connect với bạn qua đâu vị" 
-                               data-ph-en="Where can I connect with you?"
-                               data-ph-la="Ubi tecum connectere possum?"
-                               placeholder="Mình có thể connect với bạn qua đâu vị">
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            <span class="lang-vi">Lời nhắn gửi đến Khôi</span>
-                            <span class="lang-en">Message to Khoi</span>
-                            <span class="lang-la">Nuntius ad Khoi</span>
-                        </label>
-                        <textarea name="message" class="input-field dynamic-placeholder" rows="5" 
-                                  data-ph-vi="Bạn có điều gì mún nhắn gửi đến mình khôm ^^" 
-                                  data-ph-en="Do you have any words for me? ^^"
-                                  data-ph-la="Habesne verba pro me? ^^"
-                                  placeholder="Bạn có điều gì mún nhắn gửi đến mình khôm ^^" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit">
-                        <span class="lang-vi">Gửi lời nhắn</span>
-                        <span class="lang-en">Send Message</span>
-                        <span class="lang-la">Mitte Nuntium</span>
-                    </button>
-                </form>
-            </div>
-            <div id="guestbook-thank-you" class="thank-you-box">
-                <div style="font-size: 40px; margin-bottom: 15px;">✨</div>
-                <h3>
-                    <span class="lang-vi">Cảm ơn bạn đã nhắn gửi đến Minh Khôi!</span>
-                    <span class="lang-en">Thank you for your message!</span>
-                    <span class="lang-la">Gratias tibi ago pro nuntio tuo!</span>
-                </h3>
-                <p>
-                    <span class="lang-vi">Những lời nhắn của bạn là món quà vô giá đối với mình. <br><br> Mến chúc bạn luôn bình an, hạnh phúc trên chặng đường phía trước!</span>
-                    <span class="lang-en">Your words are a priceless gift to me. <br><br> Wishing you peace and happiness on your journey ahead!</span>
-                    <span class="lang-la">Verba tua donum inaestimabile mihi sunt. <br><br> Opto tibi pacem et felicitatem in itinere futuro!</span>
-                </p>
-            </div>
-        </div>
-    </div>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
@@ -1032,6 +895,9 @@
                 AOS.init();
                 // Ẩn hoàn toàn overlay sau 2s để không che web
                 welcomeOverlay.style.display = 'none';
+                
+                // 5. [NEW] Start Typewriter Effect
+                startTypewriter();
             }, 2000);
         }
 
@@ -1058,6 +924,43 @@
                     requestAnimationFrame(frame);
                 }
             }());
+        }
+
+        // --- [NEW] CREATE FIREFLIES JS ---
+        function createFireflies() {
+            const container = document.getElementById('fireflies-container');
+            const fireflyCount = 30; // Số lượng đom đóm
+            
+            for(let i=0; i<fireflyCount; i++) {
+                let div = document.createElement('div');
+                div.classList.add('firefly');
+                // Random position & delay for natural look
+                div.style.left = Math.random() * 100 + 'vw';
+                div.style.top = Math.random() * 100 + 'vh';
+                div.style.animationDelay = Math.random() * 10 + 's';
+                div.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(div);
+            }
+        }
+        createFireflies();
+
+        // --- [NEW] TYPEWRITER LOGIC ---
+        function startTypewriter() {
+            const typewriters = document.querySelectorAll('.typewriter-text');
+            typewriters.forEach(el => {
+                const text = el.getAttribute('data-text'); // Lấy text gốc
+                el.textContent = ''; // Xóa sạch để bắt đầu gõ
+                
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        el.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, 100); // Tốc độ gõ 100ms
+                    }
+                }
+                type(); // Bắt đầu gõ
+            });
         }
 
         // --- LIGHTBOX LOGIC ---
