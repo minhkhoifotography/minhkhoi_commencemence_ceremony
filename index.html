@@ -586,42 +586,49 @@
                         <h4 class="timeline-title">Foreign Affairs Officer</h4>
                         <p class="timeline-place">Conferentia Episcoporum Vietnamie</p>
                     </div>
+                    
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2025 - Present</div>
                         <h4 class="timeline-title">Professor of Theology</h4>
                         <p class="timeline-place">Nha Trang Cathedral</p>
                     </div>
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2025 </div>
                         <h4 class="timeline-title">Mentor</h4>
                         <p class="timeline-place">Le Quy Don Science and Engineering Fair</p>
                     </div>
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2024 - 2025</div>
                         <h4 class="timeline-title">Vice Proffessor of Theology</h4>
                         <p class="timeline-place">Phuoc Hoa Patrish</p>
                     </div>
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2023 - 2025</div>
                         <h4 class="timeline-title">Photographer of LMC</h4>
                         <p class="timeline-place">Le Quy Don Media Club</p>
                     </div>
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2024</div>
                         <h4 class="timeline-title">Head of Collabrator (Tech & Control)</h4>
                         <p class="timeline-place">MSOCE Management</p>
                     </div>
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2023 - 2024</div>
                         <h4 class="timeline-title">Member of Logistics Department</h4>
                         <p class="timeline-place">We Know We Share 2024</p>
                     </div>
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2017 - 2022</div>
@@ -977,6 +984,11 @@
         // --- WELCOME & START FUNCTION ---
         function startExperience() {
             welcomeOverlay.classList.add("open");
+            
+            // Set Volume Levels (30% Music, 50% Applause)
+            bgMusic.volume = 0.3;
+            if(applauseSfx) applauseSfx.volume = 0.5;
+
             bgMusic.play().then(() => {
                 musicBtn.classList.add("playing");
                 musicIcon.classList.remove("fa-music");
@@ -986,7 +998,9 @@
             if(applauseSfx) {
                 applauseSfx.play().catch(e => console.log("Applause error:", e));
             }
+            
             triggerConfetti();
+            
             setTimeout(() => {
                 AOS.init();
                 welcomeOverlay.style.display = 'none';
@@ -1144,12 +1158,20 @@
 
         // --- NAVIGATION (FIXED) ---
         function showTab(tabId, element) {
+            // 1. Remove active class from all sections & nav items
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            
+            // 2. Add active to new section & nav item
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
-            // Refresh AOS with delay to prevent content hiding bug
-            setTimeout(() => { AOS.refresh(); }, 500);
+            
+            // 3. REFRESH AOS with longer delay (Fix lỗi không hiện nội dung)
+            setTimeout(() => { 
+                AOS.refresh(); 
+            }, 500);
+            
+            // 4. Render Gallery if needed
             if(tabId === 'tab-gallery') renderGallery();
         }
 
