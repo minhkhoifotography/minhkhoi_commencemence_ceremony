@@ -44,6 +44,12 @@
             --shadow-color: rgba(0,0,0,0.3);
         }
 
+        /* --- [NEW] CUSTOM SCROLLBAR (THANH CUỘN ĐẸP) --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-text); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--palette-navy); }
+
         /* Dark Mode Adjustments */
         body.dark-mode .taskbar { border-bottom: 3px solid var(--gold-text); }
         body.dark-mode .nav-item { color: #94A3B8; }
@@ -71,6 +77,7 @@
         body.dark-mode .lang-toggle-btn { background: var(--card-bg); color: var(--gold-text); border-color: var(--gold-text); }
         body.dark-mode .theme-toggle-btn { background: var(--card-bg); color: var(--gold-text); border-color: var(--gold-text); }
         body.dark-mode .featured-title { color: var(--gold-text); }
+        body.dark-mode .back-to-top { background: var(--card-bg); border-color: var(--gold-text); color: var(--gold-text); }
 
         /* --- FIREFLIES EFFECT --- */
         .firefly {
@@ -193,7 +200,7 @@
         }
 
         .floating-actions { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 9990; }
-        .lang-toggle-btn, .theme-toggle-btn {
+        .lang-toggle-btn, .theme-toggle-btn, .back-to-top {
             width: 55px; height: 55px;
             background: var(--palette-navy); color: #D4AF37;
             border: 2px solid #D4AF37; border-radius: 50%;
@@ -202,8 +209,14 @@
             font-family: 'Cinzel', serif; font-weight: bold; font-size: 0.9rem;
             transition: all 0.3s ease;
         }
-        .lang-toggle-btn:hover, .theme-toggle-btn:hover { transform: scale(1.1); }
-        .theme-toggle-btn { font-size: 1.2rem; }
+        .lang-toggle-btn:hover, .theme-toggle-btn:hover, .back-to-top:hover { transform: scale(1.1); }
+        .theme-toggle-btn, .back-to-top { font-size: 1.2rem; }
+        
+        /* [NEW] BACK TO TOP BUTTON */
+        .back-to-top {
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
 
         .music-btn {
             position: fixed; bottom: 30px; left: 30px;
@@ -217,6 +230,18 @@
         .music-icon { font-size: 20px; color: var(--palette-navy); }
         .music-btn.playing { animation: spin 4s linear infinite; border-color: var(--palette-navy); }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* --- [NEW] COPY BUTTON --- */
+        .copy-btn {
+            background: var(--palette-navy); color: white;
+            border: 1px solid var(--gold-text);
+            padding: 8px 15px; border-radius: 20px;
+            cursor: pointer; font-size: 0.8rem;
+            margin-top: 5px; transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+        .copy-btn:hover { background: var(--gold-text); color: var(--palette-navy); }
+        .copy-success { background: #10B981 !important; border-color: #10B981 !important; color: white !important; }
 
         /* --- TASKBAR --- */
         .taskbar {
@@ -428,6 +453,10 @@
     <div id="fireflies-container"></div>
 
     <div class="floating-actions">
+        <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="Lên đầu trang">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+
         <button class="theme-toggle-btn" onclick="toggleTheme()" title="Switch Theme">
             <i class="fa-solid fa-moon" id="theme-icon"></i>
         </button>
@@ -586,49 +615,42 @@
                         <h4 class="timeline-title">Foreign Affairs Officer</h4>
                         <p class="timeline-place">Conferentia Episcoporum Vietnamie</p>
                     </div>
-                    
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2025 - Present</div>
                         <h4 class="timeline-title">Professor of Theology</h4>
                         <p class="timeline-place">Nha Trang Cathedral</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2025 </div>
                         <h4 class="timeline-title">Mentor</h4>
                         <p class="timeline-place">Le Quy Don Science and Engineering Fair</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2024 - 2025</div>
                         <h4 class="timeline-title">Vice Proffessor of Theology</h4>
                         <p class="timeline-place">Phuoc Hoa Patrish</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2023 - 2025</div>
                         <h4 class="timeline-title">Photographer of LMC</h4>
                         <p class="timeline-place">Le Quy Don Media Club</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2024</div>
                         <h4 class="timeline-title">Head of Collabrator (Tech & Control)</h4>
                         <p class="timeline-place">MSOCE Management</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2023 - 2024</div>
                         <h4 class="timeline-title">Member of Logistics Department</h4>
                         <p class="timeline-place">We Know We Share 2024</p>
                     </div>
-
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-date">2017 - 2022</div>
@@ -866,10 +888,10 @@
                 <img src="Pio.jpg" alt="Moment 1">
             </div>
             <div class="featured-item">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop" alt="Graduation Cap">
+                <img src="01.jpg" alt="Graduation Cap">
             </div>
             <div class="featured-item">
-                <img src="https://images.unsplash.com/photo-1604882737321-e6937ee9f8e8?q=80&w=600&auto=format&fit=crop" alt="School">
+                <img src="02.jpg" alt="School">
             </div>
         </div>
 
@@ -896,7 +918,11 @@
             
             <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 5px;">
                 <span class="lang-vi">Ngân hàng:</span><span class="lang-en">Bank:</span><span class="lang-la">Argentaria:</span> <strong>Vietcombank</strong><br>
-                <span class="lang-vi">STK:</span><span class="lang-en">Account No:</span><span class="lang-la">Numerus Rationis:</span> <strong>1043092852</strong><br>
+                <span class="lang-vi">STK:</span><span class="lang-en">Account No:</span><span class="lang-la">Numerus Rationis:</span> <strong id="acc-num">1043092852</strong><br>
+                <div class="copy-btn" onclick="copyToClipboard('1043092852')">
+                    <i class="fa-regular fa-copy"></i> Copy STK
+                </div>
+                <br>
                 <span class="lang-vi">Tên:</span><span class="lang-en">Name:</span><span class="lang-la">Nomen:</span> <strong>LUU MINH KHOI</strong>
             </p>
         </div>
@@ -980,6 +1006,7 @@
         const musicBtn = document.querySelector(".music-btn");
         const welcomeOverlay = document.getElementById("welcome-overlay");
         const themeIcon = document.getElementById('theme-icon');
+        const backToTopBtn = document.querySelector('.back-to-top');
 
         // --- WELCOME & START FUNCTION ---
         function startExperience() {
@@ -1250,6 +1277,31 @@
             link.click();
             document.body.removeChild(link);
         }
+
+        // --- COPY STK LOGIC ---
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã sao chép';
+                btn.classList.add('copy-success');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copy-success');
+                }, 2000);
+            }).catch(err => {
+                console.error('Không thể copy: ', err);
+            });
+        }
+
+        // --- BACK TO TOP LOGIC ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
 
         // --- OPTIMIZATION ---
         document.querySelectorAll('img').forEach(img => {
